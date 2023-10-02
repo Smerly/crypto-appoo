@@ -6,8 +6,11 @@ import { useEffect, useState } from "react"
 import { useWindowSize } from "../helpers/useWindowSize"
 
 function NavbarSmall() {
+    // UseState Vars
     const [hidden, setHidden] = useState(true)
+    // Getting the current window size with custom hook
     const size = useWindowSize()
+    // Whenever window size changes, check and adjust for size
     useEffect(() => {
         if (size[0] > 1000 && hidden === false) {
             setHidden(false)
