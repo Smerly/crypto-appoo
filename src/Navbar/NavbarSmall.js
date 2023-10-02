@@ -28,9 +28,12 @@ function NavbarSmall() {
             }}/>
 
 
-            <div className={`navbar-hidden bg-gray-200 ${hidden ? '' : 'show-navbar'}`}>
+            <div className={`navbar-hidden ${hidden ? '' : 'show-navbar'}`}>
                 <NavbarHidden>
-                    hiASDASD
+                        <SearchBar/>
+                <CurrencyDropDown />
+
+                    <DarkMode>Temp DarkMode Button</DarkMode>
                 </NavbarHidden>
             </div>
 

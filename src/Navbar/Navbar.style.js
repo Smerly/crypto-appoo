@@ -4,6 +4,7 @@ import { useWindowSize } from '../helpers/useWindowSize';
 import toggleIcon from '../images/toggler-icon.png'
 
 export const NavbarBox = styled.div`
+    position: fixed;
     width: 100vw;
     height: 5rem;
     background-color: #191B1F;
@@ -49,6 +50,8 @@ export const NavbarHidden = tw.div`
     flex
     flex-col
     h-full
+    justify-center
+    items-center
 `
 
 export const DropdownButton = tw.button`
@@ -64,8 +67,16 @@ export const DropdownButton = tw.button`
 
 export const DropdownMenu = styled.div`
 
-
 `
 
 export const DarkMode = styled.button`
+`
+
+export const SearchIconWrapper = tw.div`
+    absolute 
+    inset-y-0 
+    left-0 flex 
+    items-center 
+    pl-3 
+    pointer-events-none
 `

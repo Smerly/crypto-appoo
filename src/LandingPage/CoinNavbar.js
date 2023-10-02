@@ -1,7 +1,8 @@
-function CoinNavbar() {
+
+function CoinNavbar () {
     return (
-        <div></div>
+        <div>
+            <div className='coin-navbar-wrapper'></div>
+        </div>
     )
 }
-
-export default CoinNavbar
