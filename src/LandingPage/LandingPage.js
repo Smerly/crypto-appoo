@@ -17,11 +17,6 @@ function LandingPage () {
                     </div>
                 </div>
                 <CoinList />
-                {[1,2,3,4,5,2,3,1,3,,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2].map(() => {
-                        return (
-                            <div>asdasdasd</div>
-                        )
-                    })}
             </CustomContainer>
         </LandingPageWrapper>
     )

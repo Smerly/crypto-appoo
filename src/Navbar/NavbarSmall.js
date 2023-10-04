@@ -15,14 +15,14 @@ function NavbarSmall() {
         if (size[0] > 1000 && hidden === false) {
             setHidden(false)
         }
-    }, [useWindowSize()])
+    }, [size])
     return (
         <NavbarRespSmall>
-            <Link className='navbar-links' to={`/`}>
+            <Link className='navbar-links' to='/'>
                 Coins
             </Link>
 
-            <Link className='navbar-links' to={`/portfolio`}>
+            <Link className='navbar-links' to='/portfolio'>
                 Portfolio
             </Link>
 

@@ -6,7 +6,6 @@ import { SearchIconWrapper } from './Navbar.style'
 function SearchBar() {
     return (
         <form className={useWindowSize()[0] > 1200 ? 'w-80' : 'w-60'}>   
-            {/* <label for="default-search" className="mb-2 text-sm font-medium bg-gray sr-only dark:text-white">Search</label> */}
             <div className="relative">  
                 <SearchIconWrapper>
                     <img src={searchIcon} className='w-5'/>

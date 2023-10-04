@@ -8,11 +8,11 @@ import { DarkMode } from "./Navbar.style"
 function NavbarLarge() {
     return (
         <NavbarRespBig>
-            <Link className='navbar-links' to={`/`}>
+            <Link className='navbar-links' to='/'>
                 Coins
             </Link>
 
-            <Link className='navbar-links' to={`/portfolio`}>
+            <Link className='navbar-links' to='/portfolio'>
                 Portfolio
             </Link>
 
