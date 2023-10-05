@@ -1,4 +1,4 @@
-import { Coins } from '../Landing.style'
+import { Coins } from '../../Pages/LandingPage/Landing.style'
 import { getAllCoins, getCoin } from '../../helpers/getCoin'
 import { useEffect, useState } from 'react'
 

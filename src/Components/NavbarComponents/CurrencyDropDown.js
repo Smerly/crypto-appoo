@@ -1,12 +1,14 @@
 
 import { DropdownMenu, DropdownButton } from './Navbar.style'
-import { useState } from 'react'
-import { getCoin } from '../helpers/getCoin'
+import { useEffect, useState } from 'react'
+import { getCoin } from '../../helpers/getCoin'
 
 function CurrencyDropDown() {
     const [hidden, setHidden] = useState(true)
     const [currencies, setCurrencies] = useState([])
-    getCoin('bitcoin').then((res) => setCurrencies(Object.keys(res.market_data.price_change_24h_in_currency)))
+    useEffect(() => {
+        getCoin('bitcoin').then((res) => setCurrencies(Object.keys(res.market_data.price_change_24h_in_currency)))
+    }, [])
     return (
         <div>
             <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={() => {

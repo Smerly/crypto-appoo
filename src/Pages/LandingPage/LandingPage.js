@@ -1,12 +1,11 @@
 import './LandingPage.css'
 import { LandingPageWrapper, CustomContainer } from './Landing.style'
-import CoinList from './CoinList/CoinList'
-import { getCoin } from '../helpers/getCoin'
+import CoinList from '../../Components/CoinListComponent/CoinList'
+import { getCoin } from '../../helpers/getCoin'
 import { useState } from 'react'
 
 function LandingPage () {
     const [selectedCoin, setSelectedCoin] = useState()
-
     return (
         <LandingPageWrapper>
             <CustomContainer>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import SearchBar from "./SearchBar"
 import CurrencyDropDown from "./CurrencyDropDown"
 import { useEffect, useState } from "react"
-import { useWindowSize } from "../helpers/useWindowSize"
+import { useWindowSize } from "../../helpers/useWindowSize"
 
 function NavbarSmall() {
     // UseState Vars

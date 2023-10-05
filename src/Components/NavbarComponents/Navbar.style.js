@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import tw from 'tailwind-styled-components';
-import { useWindowSize } from '../helpers/useWindowSize';
-import toggleIcon from '../images/toggler-icon.png'
+import toggleIcon from '../../images/toggler-icon.png'
 
 export const NavbarBox = styled.div`
     position: fixed;
