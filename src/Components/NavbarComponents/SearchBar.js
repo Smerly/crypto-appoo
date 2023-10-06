@@ -1,7 +1,7 @@
 
-import { useWindowSize } from '../../helpers/useWindowSize';
-import searchIcon from '../../images/search-icon.png'
-import { SearchIconWrapper } from './Navbar.style'
+import { useWindowSize } from 'helpers/useWindowSize';
+import searchIcon from 'images/search-icon.png'
+import { SearchIconWrapper } from 'Components/NavbarComponents/Navbar.style'
 
 function SearchBar() {
     return (

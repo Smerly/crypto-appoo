@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Coins } from '../../Pages/LandingPage/Landing.style'
-import { getAllCoins, getCoin } from '../../helpers/getCoin'
+import { Coins } from 'Pages/LandingPage/Landing.style'
+import { getAllCoins, getCoin } from 'helpers/getCoin'
 
 
 function CoinList () {

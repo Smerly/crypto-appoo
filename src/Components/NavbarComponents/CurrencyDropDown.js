@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
-import { DropdownMenu, DropdownButton } from './Navbar.style'
-import { getCoin } from '../../helpers/getCoin'
+import { DropdownMenu, DropdownButton } from 'Components/NavbarComponents/Navbar.style'
+import { getCoin } from 'helpers/getCoin'
 
 function CurrencyDropDown() {
     const [hidden, setHidden] = useState(true)

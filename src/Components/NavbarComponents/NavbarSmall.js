@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { NavbarRespBig, NavbarRespSmall, NavbarToggler, DarkMode, NavbarHidden } from "./Navbar.style"
-import SearchBar from "./SearchBar"
-import CurrencyDropDown from "./CurrencyDropDown"
-import { useWindowSize } from "../../helpers/useWindowSize"
+import { NavbarRespBig, NavbarRespSmall, NavbarToggler, DarkMode, NavbarHidden } from "Components/NavbarComponents/Navbar.style"
+import SearchBar from "Components/NavbarComponents/SearchBar"
+import CurrencyDropDown from "Components/NavbarComponents/CurrencyDropDown"
+import { useWindowSize } from "helpers/useWindowSize"
 
 function NavbarSmall() {
     // UseState Vars
@@ -12,7 +12,7 @@ function NavbarSmall() {
     const size = useWindowSize()
 
     const show = () => setHidden(!hidden)
-    
+
     // Whenever window size changes, check and adjust for size
     useEffect(() => {
         if (size[0] > 1000 && hidden === false) {

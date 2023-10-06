@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { LandingPage, Portfolio, ViewCoin } from './Pages';
-import Navbar from './Components/NavbarComponents/Navbar'
+import { LandingPage, Portfolio, ViewCoin } from 'Pages';
+import Navbar from 'Components/NavbarComponents/Navbar'
 import './App.css';
 
 function App() {

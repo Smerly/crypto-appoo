@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './LandingPage.css'
-import { LandingPageWrapper, CustomContainer } from './Landing.style'
-import CoinList from '../../Components/CoinListComponent/CoinList'
-import { getCoin } from '../../helpers/getCoin'
+import { LandingPageWrapper, CustomContainer } from 'Pages/LandingPage/Landing.style'
+import CoinList from 'Components/CoinListComponent/CoinList'
+import { getCoin } from 'helpers/getCoin'
+import 'Pages/LandingPage/LandingPage.css'
 
 function LandingPage () {
     const [selectedCoin, setSelectedCoin] = useState()
