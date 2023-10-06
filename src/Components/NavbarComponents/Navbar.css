@@ -16,6 +16,16 @@
     background-color: #1e2125;
 }
 
+.custom-search {
+    color: white;
+    height: 2.8rem;
+    border-radius: 10px;
+    margin-left: auto;
+    /* height: 2rem; */
+    /* padding: 15px; */
+    background-color: #2C2F36;
+}
+
 .dropdown {
     display: none;
     position: absolute;
