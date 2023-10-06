@@ -1,9 +1,9 @@
-import { NavbarBox, NavbarRespBig, NavbarRespSmall, DarkMode } from './Navbar.style';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { useWindowSize } from '../../helpers/useWindowSize';
+import { NavbarBox, NavbarRespBig, NavbarRespSmall, DarkMode } from './Navbar.style';
 import SearchBar from './SearchBar.js';
 import CurrencyDropDown from './CurrencyDropDown';
-import { useWindowSize } from '../../helpers/useWindowSize';
-import { useEffect, useState } from 'react';
 import NavbarLarge from './NavbarLarge';
 import NavbarSmall from './NavbarSmall';
 import './Navbar.css'

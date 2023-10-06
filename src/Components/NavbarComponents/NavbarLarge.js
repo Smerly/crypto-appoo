@@ -1,6 +1,6 @@
 
-import { NavbarRespBig } from "./Navbar.style"
 import { Link } from "react-router-dom"
+import { NavbarRespBig } from "./Navbar.style"
 import SearchBar from "./SearchBar"
 import CurrencyDropDown from "./CurrencyDropDown"
 import { DarkMode } from "./Navbar.style"
