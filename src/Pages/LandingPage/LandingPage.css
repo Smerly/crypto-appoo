@@ -1,0 +1,23 @@
+
+.landing-component-wrapper {
+    background-color: #1F2128;
+    border: 8px #191B1F solid;
+    border-top: 0px black solid;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.graph-row {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    margin-top: 10vh;
+}
+
+
+.graph-box {
+    width: 34vw;
+    height: 40vh;
+    border: 1px black solid;
+}
