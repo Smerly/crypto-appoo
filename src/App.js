@@ -1,19 +1,23 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { LandingPage, Portfolio, ViewCoin } from 'Pages';
-import Navbar from 'Components/NavbarComponents/Navbar'
+import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navbar/>
-        <Routes>
-          <Route path='/' Component={LandingPage}/>
-          <Route path='/portfolio' Component={Portfolio} />
-          <Route path='/coin/:slug' Component={ViewCoin} />
-        </Routes>
-      </Router>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
