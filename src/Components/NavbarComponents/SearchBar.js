@@ -1,7 +1,7 @@
 
 import { useWindowSize } from 'helpers/useWindowSize';
 import searchIcon from 'images/search-icon.png'
-import { SearchIconWrapper } from 'Components/NavbarComponents/Navbar.style'
+import { SearchIconWrapper, SearchInput } from 'Components/NavbarComponents/Navbar.style'
 
 function SearchBar() {
     return (
@@ -10,7 +10,7 @@ function SearchBar() {
                 <SearchIconWrapper>
                     <img src={searchIcon} className='w-5'/>
                 </SearchIconWrapper>
-                <input type="input" className="custom-search w-full p-4 pl-10 text-md bg-gray" placeholder="Search Coin..." required />
+                <SearchInput type="input" placeholder="Search Coin..." required />
             </div>
         </form>
     )
