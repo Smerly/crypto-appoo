@@ -79,3 +79,14 @@ export const SearchIconWrapper = tw.div`
     pl-3 
     pointer-events-none
 `
+export const SearchInput = tw.input`
+    rounded-xl 
+    h-11 
+    w-full 
+    ml-auto 
+    p-4 
+    pl-10 
+    text-md 
+    text-white 
+    bg-lighterGray
+`
