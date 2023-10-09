@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { DropdownMenu, DropdownButton } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
@@ -13,7 +14,7 @@ function CurrencyDropDown() {
     return (
         <div>
             <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>dropdown</DropdownButton>
-            {/* The DropdownMenu's initial state is hidden */}
+            {/* The DropdownMenu at first is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <ul>
                     {currencies.map((each) => <li>{each}</li>)}
