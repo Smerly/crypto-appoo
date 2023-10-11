@@ -1,1 +1,1 @@
-export {default} from './ViewCoin'
+export {default} from './ViewCoin.js'

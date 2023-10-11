@@ -1,4 +1,4 @@
-                    </DescriptionText>
+
 function ViewCoin() {
     return (
         <div></div>
