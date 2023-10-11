@@ -1,3 +1,19 @@
+import tw from 'tailwind-styled-components'
+
+export const MoreInfoWrapper = tw.div`
+    bg-primary 
+    rounded-5xl 
+    flex 
+    m-20 
+    lg:m-0 
+    flex-col 
+    items-start 
+    justify-center 
+    p-10 
+    w-96 
+    h-80
+`
+
 
 export const MoreInfoList = tw.header`
     text-md
@@ -6,6 +22,40 @@ export const MoreInfoList = tw.header`
     flex-row
     justify-center
     items-center
+`
+
+export const PriceBoxWrapper = tw.div`
+    bg-primary 
+    rounded-5xl 
+    m-20 
+    lg:m-0 
+    flex 
+    flex-col 
+    justify-center 
+    items-center 
+    w-96 
+    h-80
+`
+
+export const PriceDisplays = tw.div`
+    flex
+    flex-row
+`
+
+export const Xl3Header = tw.div`
+    text-4xl
+    text-white
+`
+
+export const SmHeader = tw.div`
+    text-sm 
+    text-white
+    flex 
+    flex-row
+`
+
+export const GreenText = tw.h2`
+    text-green-400
 `
 
 export const IfSmallerWindow = tw.div`
@@ -36,11 +86,31 @@ export const ToggleDescriptionButton = tw.button`
     mt-10
 `
 
-export const CopyLinkIcon = tw.img`
-    mr-5
+export const OpenLinkIcon = tw.img`
+    w-3
 `
 
 export const LinkPageRef = tw.a`
+    rounded-full
+    hover:bg-lighterGray
+    duration-200
+    p-2
+    mr-2
+`
+
+export const CopyLinkButton = tw.button`
+    rounded-full
+    hover:bg-lighterGray
+    duration-200
+    p-2
+    ml-2
+`
+
+export const CopyLinkIcon = tw.img`
+    w-3
+`
+
+export const LinkPageBox = tw.div`
     bg-primary 
     text-white 
     flex 
@@ -66,7 +136,9 @@ export const TitleSquare = tw.div`
     lg:m-0
 `
 export const LinksContainer = tw.div`
-
+    flex
+    flex-row
+    items-center
 `
 
 export const SectionWrapper = tw.div`
