@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import PriceBox from 'Components/ViewCoinComponents/PriceBox'
 import MoreInfoBox from 'Components/ViewCoinComponents/MoreInfoBox'
 import TitleBox from 'Components/ViewCoinComponents/TitleBox'
+import LinksFooter from "Components/ViewCoinComponents/LinksFooter"
 import { IfSmallerWindow, DescriptionBox, DescriptionText, ToggleDescriptionButton, LinksContainer, SectionWrapper } from './ViewCoin.style'
 import { getCoin } from "helpers/getCoin"
 import { CustomContainer } from "Pages/LandingPage/Landing.style"
@@ -20,6 +21,8 @@ function ViewCoin() {
     const [priceChange24Percent, setPriceChange24Percent] = useState('loading...')
     const [description, setDescription] = useState('loading...')
     const [homepage, setHomepage] = useState('loading...')
+    const [blockchair, setBlockChair] = useState('loading...')
+    const [tokenView, setTokenView] = useState('loading...')
     const [currentPrice, setCurrentPrice] = useState('loading...')
     const [marketCap, setMarketCap] = useState('loading...')
     const [symbol, setSymbol] = useState('loading...')
@@ -40,6 +43,8 @@ function ViewCoin() {
             setPriceChange24Percent(Math.floor(res.market_data.price_change_percentage_24h * 100) / 100)
             setDescription(res.description.en)
             setHomepage(res.links.homepage[0])
+            setBlockChair(res.links.blockchain_site[0])
+            setTokenView(res.links.blockchain_site[2])
             setCurrentPrice(setNumberCommas(String(res.market_data.current_price.usd)))
             setMarketCap(setNumberCommas(String(res.market_data.market_cap.usd)))
             setSymbol(res.symbol)
@@ -105,14 +110,13 @@ function ViewCoin() {
 
                 <DescriptionBox>
                     <DescriptionText>
-                        <span dangerouslySetInnerHTML={{ __html: description }}>{handleLongDescription(description)}</span>
+                        <span>{handleLongDescription(description)}</span>
                     </DescriptionText>
                     <ToggleDescriptionButton onClick={changeDescriptionSize}>{descriptionTextButton()}</ToggleDescriptionButton>
                 </DescriptionBox>
 
-                <LinksContainer>
-                    
-                </LinksContainer>
+                <LinksFooter blockchair={blockchair} tokenView={tokenView} homepage={homepage} /> 
+                
             </CustomContainer>
         </PrimaryComponentWrapper>
     )
