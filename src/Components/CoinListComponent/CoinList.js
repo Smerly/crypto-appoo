@@ -10,28 +10,18 @@ function CoinList () {
     const [coins, setCoins] = useState('hi')
     const [renderedCoin, setRenderedCoin] = useState([])
 
+    // This is for features later down the road
     const updateCoinSort = (sortType) => {
         setRenderedCoin(renderedCoin.sort((a, b) => {
             return b[sortType] - a[sortType]
         }))
     }
-
-    // useEffect(() => {
-    //     getAllCoins().then((res) => {
-    //         setCoins(res)
-    //         setRenderedCoin(res.slice(0,20))
-    //         console.log(res)
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }, [])
-
     useEffect(() => {
         getAllCoinsWithImages().then((res) => {
             setCoins(res)
             setRenderedCoin(res.slice(0, 10))
         }).catch((err) => {
-            console.log(err)
+            return err
         })
     }, [])
 

@@ -10,8 +10,26 @@ import { type } from '@testing-library/user-event/dist/type';
 function EachCoin(props) {
     const { coin, index } = props
     const [coinChartData, setCoinChartData] = useState()
-    const [image, setImage] = useState('loading...')
-    console.log(coin)
+
+    // Helper Vars
+
+    const returnAwait = (obj, str) => {
+        return obj ? obj[str] : 'loading..'
+    }
+
+    const today = new Date()
+    const daysInAWeek = ["Sun", 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
+    const weekOfChartData = returnAwait(coinChartData, 'prices').slice(0,7)
+    const weekFromNow = []
+
+    // Make weekFromNow list days of the week according to the current day
+    let weekIndex = 0
+    daysInAWeek.forEach((each) => {
+        const indexedDate = new Date()
+        indexedDate.setDate(today.getDate() + weekIndex)
+        weekFromNow.push(daysInAWeek[indexedDate.getDay()])
+        weekIndex++
+    })
 
     ChartJS.register(
         LineElement,
@@ -19,29 +37,26 @@ function EachCoin(props) {
         CategoryScale,
         LinearScale,
         Tooltip,
-        // Legend
     )
-
-
     useEffect(() => {
         getCoinChartData(coin.id).then((res) => {
             setCoinChartData(res)
         }).catch((err) => {
-            console.log(err)
+            return err
         })
     }, [])
     
+    // Helper Function
+
     const roundToHundredth = (num) => {
         return Math.floor(num * 100) / 100
     }
 
     const returnOwnedPercentage = () => {
-        // console.log(`total_volume:${coin.total_volume} / market_cap: ${coin.market_cap} = ${coin.total_volume / coin.market_cap * 100}`)
         return coin.total_volume / (coin.market_cap) * 100
     }
 
     const returnCirculatingPercentage = () => {
-        console.log(`circulating_supply:${coin.circulating_supply} / total_supply${coin.total_supply} = ${coin.circulating_supply / (coin.total_supply + coin.circulating_supply)}`)
         return coin.circulating_supply / (coin.circulating_supply + coin.total_supply) * 100
     }
 
@@ -55,49 +70,57 @@ function EachCoin(props) {
         } else {
             return num
         }
-
     }
 
-
-    console.log(returnCirculatingPercentage() * 2)
-    const returnAwait = (obj, str) => {
-        return obj ? obj[str] : 'loading..'
+    const returnGreenOrRed = (data) => {
+        return data[data.length - 1][1] > data[0][1] ? '#4ade80' : '#dc2626'
     }
-
-    console.log(returnAwait(coin, 'sparkline_in_7.prices'))
-
-    const returnGreenOrRed = (num) => {
-        return num > 0 ? 'bg-green-200' : 'bg-red-400'
-    }
-    
-    console.log(coin.sparkline_in_7)
-
-    const weekOfChartData = returnAwait(coinChartData, 'prices').slice(0,7)
-    console.log(weekOfChartData[weekOfChartData.length - 1][1])
-    console.log(weekOfChartData[0][1])
 
     const data = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', "Sun"],
+        labels: weekFromNow,
         datasets: [
             {
                 data: weekOfChartData,
                 tension: 0.4,
-                borderColor: weekOfChartData[weekOfChartData.length - 1][1] > weekOfChartData[0][1] ? '#4ade80' : '#dc2626',
+                borderColor: returnGreenOrRed(weekOfChartData),
                 fill: true,
             }
         ],
     }
 
+    // Options obj for chart config
     const options = {
         plugins: {
-          legend: {
-            display: false,
-          },
-          subtitle: {
-            display: false
-          },
-          tooltips: {
-            enabled: false
+            legend: {
+                display: false,
+            },
+            subtitle: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+                }
+        },
+        transitions: {
+            show: {
+                animations: {
+                    x: {
+                        from: 0
+                    },
+                    y: {
+                        from: 0
+                    }
+                }
+            },
+            hide: {
+                animations: {
+                    x: {
+                        to: 0
+                    },
+                    y: {
+                        to: 0
+                    }
+                }
             }
         },
         interaction: {
@@ -105,44 +128,37 @@ function EachCoin(props) {
             intersect: false,
         },
         elements: {
-          point: {
-            radius: 0,
-          },
+            point: {
+                radius: 0,
+            },
         },
         scales: {
             x: {
                 ticks: {
-                align: "start",
-                source: "auto",
-                maxRotation: 0,
-                autoSkip: true,
-                maxTicksLimit: 7,
-                font: {
-                    size: 0,
+                    font: {
+                        size: 0,
+                    },
+                },
+                grid: {
+                    display: false,
                 },
             },
-            grid: {
-              display: false,
+            y: {
+                ticks: {
+                  font: {
+                    size: 0,
+                  }
+                },
+                grid: {
+                    display: false,
+                },
             },
-          y: {
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 5,
-              font: {
-                size: 0,
-              }
-            },
-            grid: {
-                display: false,
-            },
-          },
-        },
-    }
+        }
     }
 
     return (
         <EachCoinWrapper>
-            <CoinHeader>{index} {weekOfChartData[weekOfChartData.length - 1][1]} - {weekOfChartData[0][1]}</CoinHeader>
+            <CoinHeader>{index}</CoinHeader>
             <CoinName>
             <CoinImage src={returnAwait(coin, 'image')}/>
                 {returnAwait(coin, 'name')}
