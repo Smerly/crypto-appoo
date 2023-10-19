@@ -68,6 +68,7 @@ export const Last7DGraph = tw.div`
     flex-row
     justify-center
     items-center
+    ml-auto
 
 `
 
