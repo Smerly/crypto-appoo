@@ -11,7 +11,7 @@ function CoinList () {
 
     // This is for features later down the road
     const updateCoinSort = (sortType) => {
-        setRenderedCoin(renderedCoin.sort((a, b) => {
+        setRenderedCoin([...renderedCoin].sort((a, b) => {
             return b[sortType] - a[sortType]
         }))
     }
