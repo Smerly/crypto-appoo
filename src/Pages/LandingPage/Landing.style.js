@@ -13,10 +13,3 @@ export const CustomContainer = styled.div`
     margin-left: 10vw;
     margin-right: 10vw;
 `
-
-
-export const Coins = styled.div`
-    border: 2px black solid;
-    display: flex;
-    flex-direction: column'
-`

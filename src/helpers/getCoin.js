@@ -7,10 +7,16 @@ export async function getCoin(coin) {
 }
 
 export async function getAllCoins() {
-    const desiredCoin = fetch(`https://api.coingecko.com/api/v3/coins/list`).then((res) => {
-            return res
-        }).catch((err) => {
-            console.log(err)
-        })
-        return desiredCoin
+    const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/list`)
+    return await desiredCoin.json()
+}
+
+export async function getAllCoinsWithImages() {
+    const coins = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`)
+    return await coins.json()
+}
+
+export async function getCoinChartData(coin) {
+    const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`)
+    return await desiredCoin.json()
 }
