@@ -13,7 +13,7 @@ function LandingPage () {
                 <h1 className='text-3xl mt-5 title-header'> Overview </h1>
                 <div className='graph-row'>
                     <div className='graph-box'> 
-                        <LineGraph/> 
+                        <LineGraph /> 
                     </div>
                     <div className='graph-box'></div>
                 </div>
