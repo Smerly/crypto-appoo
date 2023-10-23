@@ -1,5 +1,5 @@
 export const options = {
-    plugins: {
+    // plugins: {
         legend: {
             display: false,
         },
@@ -8,8 +8,14 @@ export const options = {
         },
         tooltips: {
             enabled: false
-            }
-    },
+        },
+        chartAreaBorder: {
+            borderColor: 'red',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            borderDashOffset: 2,
+        },
+    // },
     transitions: {
         show: {
             animations: {
@@ -37,16 +43,28 @@ export const options = {
         intersect: false,
     },
     elements: {
+        line: {
+            fill: true,
+            BackgroundColor: 'red'
+        },
         point: {
             radius: 0,
         },
     },
     scales: {
+        // xAxes: [{
+        //     type: 'time',
+        //     ticks: {
+        //         autoSkip: true,
+        //         maxTicksLimit: 200
+        //     }
+        // }],
         x: {
             ticks: {
                 font: {
-                    size: 0,
+                    size: 5,
                 },
+                maxTicksLimit: 2000
             },
             grid: {
                 display: false,
@@ -56,7 +74,8 @@ export const options = {
             ticks: {
               font: {
                 size: 0,
-              }
+              },
+              maxTicksLimit: 2000
             },
             grid: {
                 display: false,
