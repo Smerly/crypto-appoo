@@ -4,6 +4,7 @@ import CoinList from 'Components/CoinListComponent/CoinList'
 import { getCoin } from 'helpers/getCoin'
 import 'Pages/LandingPage/LandingPage.css'
 import LineGraph from 'Components/OverviewComponents/LineGraph'
+import BarGraph from 'Components/OverviewComponents/BarGraph'
 
 function LandingPage () {
     const [selectedCoin, setSelectedCoin] = useState()
@@ -15,7 +16,9 @@ function LandingPage () {
                     <div className='graph-box'> 
                         <LineGraph /> 
                     </div>
-                    <div className='graph-box'></div>
+                    <div className='graph-box'>
+                        <BarGraph />
+                    </div>
                 </div>
                 <CoinList />
             </CustomContainer>

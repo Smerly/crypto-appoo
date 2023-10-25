@@ -1,13 +1,13 @@
 export const options = {
-    // plugins: {
+    plugins: [{
         legend: {
-            display: false,
+            display: true,
         },
         subtitle: {
-            display: false
+            display: true
         },
         tooltips: {
-            enabled: false
+            enabled: true
         },
         chartAreaBorder: {
             borderColor: 'red',
@@ -15,7 +15,7 @@ export const options = {
             borderDash: [5, 5],
             borderDashOffset: 2,
         },
-    // },
+    }],
     transitions: {
         show: {
             animations: {
@@ -62,7 +62,7 @@ export const options = {
         x: {
             ticks: {
                 font: {
-                    size: 5,
+                    size: 10,
                 },
                 maxTicksLimit: 2000
             },
@@ -83,3 +83,24 @@ export const options = {
         },
     }
 }
+
+export const plugins = [{
+    legend: {
+        display: true,
+        labels: {
+            position: 'top'
+        }
+    },
+    subtitle: {
+        display: true
+    },
+    tooltips: {
+        enabled: true
+    },
+    chartAreaBorder: {
+        borderColor: 'red',
+        borderWidth: 2,
+        borderDash: [5, 5],
+        borderDashOffset: 2,
+    },
+}]

@@ -5,7 +5,7 @@ import { getCoin, getCoinChartData } from 'helpers/getCoin';
 import { Line } from 'react-chartjs-2';
 import { EachCoinWrapper, CoinTitle, CoinName, CoinImage, CoinHeader, CoinBar, CoinBarWrapper, CoinBarLabel, CoinBarLeft, LabelRight, Last7DGraph} from 'Components/CoinListComponent/CoinList.style';
 import { type } from '@testing-library/user-event/dist/type';
-import { handleAwait } from 'utils/handleAwait';
+import { handleAwait, handleAwaitSlice } from 'utils/handleAwait';
 import { returnPercentage } from 'utils/returnPercentage'
 import { returnGreenOrRed } from 'utils/returnGreenOrRed';
 import { returnMillBillThou } from 'utils/returnMillBillThou';
@@ -15,7 +15,7 @@ import { options } from 'Components/CoinListComponent/options'
 
 function EachCoin(props) {
     const { coin, index } = props
-    const [coinChartData, setCoinChartData] = useState()
+    const [coinChartData, setCoinChartData] = useState({prices: [1,2,3,4,5,6,7]})
 
     // Helper Vars
 
@@ -47,6 +47,7 @@ function EachCoin(props) {
         })
     }, [])
     
+    console.log(coinChartData)
    
     // Data for chart
     const data = {
@@ -57,6 +58,7 @@ function EachCoin(props) {
                 tension: 0.4,
                 borderColor: returnGreenOrRed(weekOfChartData),
                 fill: true,
+                backgroundColor: 'rgba(214, 222, 255, 0)'
             }
         ],
     }
