@@ -9,13 +9,10 @@ import { handleAwaitArray } from "utils/handleAwait";
 
 function BarGraph() {
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
+
     ChartJS.register(
         BarElement
     )
-    
-    const awaitHandling = (data, query) => {
-        return Array.isArray(data[query]) ? data[query].map((l) => l[1]).slice(0,23) : [[1, 0], [1, 0]]
-    }
 
     useEffect(() => {
         getCoinChartData('bitcoin').then((res) => setCoinData(res)).catch((err) => {
@@ -26,7 +23,7 @@ function BarGraph() {
         labels: handleAwaitArray(coinData, 'total_volumes', 0, 23).map((each) => returnMillBillThou(each)),
         datasets: [
             {
-                data: awaitHandling(coinData, 'total_volumes'),
+                data: handleAwaitArray(coinData, 'total_volumes', 0, 23),
                 tension: 0.4,
                 borderColor: '#2172E5',
                 fill: true,
@@ -34,9 +31,7 @@ function BarGraph() {
             }
         ]
     }
-    console.log(coinData)
 
-    // console.log(awaitHandling(coinData, 'prices'))
     return (
         <div>
             <Bar data={data} options={options}/>
