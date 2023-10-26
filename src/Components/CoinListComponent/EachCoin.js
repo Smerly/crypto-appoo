@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { getCoin, getCoinChartData } from 'helpers/getCoin';
 import { Line } from 'react-chartjs-2';
@@ -24,6 +25,7 @@ function EachCoin(props) {
     const weekOfChartData = handleAwait(coinChartData, 'prices').slice(0,7)
 
     // Make weekFromNow list days of the week according to the current day
+
     let weekIndex = 0
     const weekFromNow = daysInAWeek.map((each) => {
         const indexedDate = new Date()
@@ -64,10 +66,10 @@ function EachCoin(props) {
     return (
         <EachCoinWrapper>
             <CoinHeader>{index}</CoinHeader>
-            <CoinName>
-            <CoinImage src={handleAwait(coin, 'image')}/>
+            <Link className='flex flex-row justify-center items-center text-sm ml-8' to={`/coin/${coin.id}`}>
+                <CoinImage src={handleAwait(coin, 'image')}/>
                 {handleAwait(coin, 'name')}
-            </CoinName>
+            </Link>
             <CoinHeader className='ml-7'>
                 ${roundToHundredth(handleAwait(coin, 'current_price'))}
             </CoinHeader>
