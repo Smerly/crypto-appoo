@@ -46,8 +46,6 @@ function EachCoin(props) {
             return err
         })
     }, [])
-    
-    console.log(coinChartData)
    
     // Data for chart
     const data = {

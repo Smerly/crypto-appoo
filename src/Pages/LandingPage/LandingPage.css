@@ -10,7 +10,6 @@
 .graph-row {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: space-evenly;
     margin-top: 10vh;
 }
@@ -19,5 +18,4 @@
 .graph-box {
     width: 34vw;
     height: 40vh;
-    /* border: 1px black solid; */
 }

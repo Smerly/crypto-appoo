@@ -52,13 +52,6 @@ export const options = {
         },
     },
     scales: {
-        // xAxes: [{
-        //     type: 'time',
-        //     ticks: {
-        //         autoSkip: true,
-        //         maxTicksLimit: 200
-        //     }
-        // }],
         x: {
             ticks: {
                 font: {

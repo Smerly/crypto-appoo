@@ -1,5 +1,4 @@
 export const handleAwait = (obj, str) => {
-    console.log(obj)
     return obj ? obj[str] : [1,2,3,4]
 }
 
@@ -8,6 +7,5 @@ export const handleAwaitArray = (data, query, start, end) => {
 }
 
 export const handleAwaitSlice = (obj, str, begin, end) => {
-    console.log(obj)
     return Array.isArray(obj) ? obj[str].slice(0, 7) : [1,2,3,4,5,6,7,8]
 }
