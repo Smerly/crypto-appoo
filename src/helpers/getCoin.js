@@ -17,6 +17,6 @@ export async function getAllCoinsWithImages() {
 }
 
 export async function getCoinChartData(coin) {
-    const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7&interval=daily`)
+    const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`)
     return await desiredCoin.json()
 }
