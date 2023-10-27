@@ -6,7 +6,7 @@ import { getCoin, getCoinChartData } from 'helpers/getCoin';
 import { Line } from 'react-chartjs-2';
 import { EachCoinWrapper, CoinTitle, CoinName, CoinImage, CoinHeader, CoinBar, CoinBarWrapper, CoinBarLabel, CoinBarLeft, LabelRight, Last7DGraph} from 'Components/CoinListComponent/CoinList.style';
 import { type } from '@testing-library/user-event/dist/type';
-import { handleAwait, handleAwaitSlice } from 'utils/handleAwait';
+import { handleAwait, handleAwaitChart, handleAwaitSlice } from 'utils/handleAwait';
 import { returnPercentage } from 'utils/returnPercentage'
 import { returnGreenOrRed } from 'utils/returnGreenOrRed';
 import { returnMillBillThou } from 'utils/returnMillBillThou';
@@ -16,13 +16,13 @@ import { options } from 'Components/CoinListComponent/options'
 
 function EachCoin(props) {
     const { coin, index } = props
-    const [coinChartData, setCoinChartData] = useState({prices: [1,2,3,4,5,6,7]})
+    const [coinChartData, setCoinChartData] = useState([[1,2],[3,4],[5,6],[7,8], [9,10], [11, 12], [13, 14], [15, 16], [17, 18]])
 
     // Helper Vars
 
     const today = new Date()
     const daysInAWeek = ["Sun", 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
-    const weekOfChartData = handleAwait(coinChartData, 'prices').slice(0,7)
+    const weekOfChartData = handleAwaitChart(coinChartData, 'prices').slice(0,7)
 
     // Make weekFromNow list days of the week according to the current day
 
@@ -34,6 +34,12 @@ function EachCoin(props) {
         return daysInAWeek[indexedDate.getDay()]
     })
 
+    const delayChart = () => {
+        setTimeout(() => {
+            return <Line data={data} options={options}/>
+        }, 1000);
+        return <Line data={data} options={options}/>
+    }
     ChartJS.register(
         LineElement,
         PointElement,
@@ -112,7 +118,7 @@ function EachCoin(props) {
             </CoinBarWrapper>
             
             <Last7DGraph>
-                <Line data={data} options={options}/>
+                {delayChart()}
             </Last7DGraph>
 
         </EachCoinWrapper>
