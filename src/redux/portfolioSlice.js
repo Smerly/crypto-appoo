@@ -3,10 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
     // currencies interface:
 // {
 //      id: 1,
-//      currencyInfo: {currency from api},
+//      recordedCurrencyInfo: {currency from api},
 //      amountPurchased: 2,
-//      priceWhenPurchased: $20,
-//      priceTotalCurrency: $200 
+//      priceTotalCurrency: $200,
 // }
 
 const initialState = {
