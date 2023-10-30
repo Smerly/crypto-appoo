@@ -34,12 +34,6 @@ function EachCoin(props) {
         return daysInAWeek[indexedDate.getDay()]
     })
 
-    const delayChart = () => {
-        setTimeout(() => {
-            return <Line data={data} options={options}/>
-        }, 1000);
-        return <Line data={data} options={options}/>
-    }
     ChartJS.register(
         LineElement,
         PointElement,
@@ -118,7 +112,7 @@ function EachCoin(props) {
             </CoinBarWrapper>
             
             <Last7DGraph>
-                {delayChart()}
+                <Line data={data} options={options}/>
             </Last7DGraph>
 
         </EachCoinWrapper>
