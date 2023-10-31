@@ -36,7 +36,7 @@ export const CoinHeader = tw.div`
     text-sm
 `
 
-export const CoinName = tw.div`
+export const CoinName = tw.button`
     flex
     flex-row
     justify-center
