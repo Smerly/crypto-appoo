@@ -14,7 +14,7 @@ export const AddAssetsButton = tw.button`
     items-center
 `
 
-export const PortfolioWrapper = tw.button`
+export const PortfolioWrapper = tw.div`
     w-full
     flex
     flex-col
