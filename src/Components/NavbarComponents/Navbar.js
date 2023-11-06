@@ -7,12 +7,16 @@ import CurrencyDropDown from 'Components/NavbarComponents/CurrencyDropDown';
 import NavbarLarge from 'Components/NavbarComponents/NavbarLarge';
 import NavbarSmall from 'Components/NavbarComponents/NavbarSmall';
 import 'Components/NavbarComponents/Navbar.css'
+import CoinNavBar from 'Components/CoinNavbar/CoinNavbar';
 
 function Navbar() {
     return (
-        <NavbarBox>
-            {useWindowSize()[0] > 1000 ? <NavbarLarge /> : <NavbarSmall />}
-        </NavbarBox>
+        <div>
+            <NavbarBox>
+                {useWindowSize()[0] > 1000 ? <NavbarLarge /> : <NavbarSmall />}
+            </NavbarBox>
+            <CoinNavBar />
+        </div>
     )
 }
 

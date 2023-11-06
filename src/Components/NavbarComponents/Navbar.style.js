@@ -3,7 +3,6 @@ import tw from 'tailwind-styled-components';
 import toggleIcon from 'images/toggler-icon.png'
 
 export const NavbarBox = styled.div`
-    position: fixed;
     width: 100vw;
     height: 5rem;
     background-color: #191B1F;
