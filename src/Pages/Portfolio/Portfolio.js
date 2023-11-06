@@ -1,8 +1,16 @@
+import { PrimaryComponentWrapper } from "App.style"
+import { AddAssetsButton, PortfolioWrapper } from 'Pages/Portfolio/Portfolio.style'
+import Assets from 'Components/AssetsComponent/Assets' 
+import AddAsset from "Components/AssetsComponent/AddAsset/AddAsset"
+
 function Portfolio() {
     return (
-        <div>
-            <div> Portfolio </div>
-        </div>
+        <PrimaryComponentWrapper>
+            <PortfolioWrapper>
+                <AddAsset />
+                <Assets />
+            </PortfolioWrapper>
+        </PrimaryComponentWrapper>
     )
 }
 

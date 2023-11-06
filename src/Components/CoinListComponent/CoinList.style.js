@@ -96,3 +96,7 @@ export const LabelRight = tw.div`
     ml-auto
     mr-2
 `
+
+export const EachCoinSelection = tw.button`
+    
+`
