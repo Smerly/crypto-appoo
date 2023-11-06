@@ -12,7 +12,7 @@ export const AddAssetsButton = tw.button`
     w-80
     justify-center
     items-center
-`
+`           
 
 export const PortfolioWrapper = tw.div`
     w-full

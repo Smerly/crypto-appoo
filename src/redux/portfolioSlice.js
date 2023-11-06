@@ -1,5 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Notes:
+
+// id
+// name
+// image
+// amountInCurrency
+// priceOfEach
+// amountOfCoins
+// Date Purchased
+
 const initialState = {
     currencies: []
 }
