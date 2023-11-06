@@ -6,6 +6,7 @@ import { getGradient } from "utils/getGradient"
 import { returnMillBillThou } from "utils/returnMillBillThou"
 import { options, plugins } from "Components/OverviewComponents/options"
 import { getCoinChartData } from "helpers/getCoin"
+import { MainChartWrapper } from "./overview.style"
 
 function LineGraph () {
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
@@ -47,10 +48,9 @@ function LineGraph () {
         ]
     }
     return (
-        <div>
-            <Line options={options} data={data} 
-             />
-        </div>
+        <MainChartWrapper>
+            <Line options={options} data={data} />
+        </MainChartWrapper>
     )
 }
 

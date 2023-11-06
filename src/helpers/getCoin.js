@@ -20,3 +20,8 @@ export async function getCoinChartData(coin) {
     const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`)
     return await desiredCoin.json()
 }
+
+export async function getGlobalData() {
+    const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/global`)
+    return await desiredCoin.json()
+}
