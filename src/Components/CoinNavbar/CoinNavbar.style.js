@@ -14,10 +14,15 @@ export const CoinNavbarWrapper = tw.div`
 `
 
 export const CoinNavbarText = tw.p`
+<<<<<<< HEAD
     flex
     flex-row
     text-white
     mx-1
+=======
+    text-white
+    m-3
+>>>>>>> MainChartsLandingDev
     text-sm
 `
 
@@ -30,6 +35,7 @@ export const CoinNavbarBarWrapper = styled.div`
 
 export const CoinNavbarBarFilled = styled.div`
     height: 10px;
+<<<<<<< HEAD
     width: ${(props) => {
         const fraction = Number(props.fraction)
         const total = props.total
@@ -44,4 +50,9 @@ export const CoinNavbarBarFilled = styled.div`
 export const SmallImage = tw.img`
     w-3
     h-3
+=======
+    width: 10px;
+    background-color: white;
+    border-radius: 20px;
+>>>>>>> MainChartsLandingDev
 `

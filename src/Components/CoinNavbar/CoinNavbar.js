@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { getGlobalData } from "helpers/getCoin";
+<<<<<<< HEAD
 import { CoinNavbarWrapper, CoinNavbarText, SmallImage } from "./CoinNavbar.style";
 import CoinNavbarBar from "./CoinNavbarBar";
 import { handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import btcLogo from 'images/Bitcoin.png'
 import ethLogo from 'images/ethereum.png'
+=======
+import { CoinNavbarWrapper, CoinNavbarText } from "./CoinNavbar.style";
+import CoinNavbarBar from "./CoinNavbarBar";
+>>>>>>> MainChartsLandingDev
 
 
 function CoinNavbar () {
     const [globalData, setGlobalData] = useState({})
+<<<<<<< HEAD
     const [marketCap24h, setMarketCap24h] = useState(0)
     const [totalVolume, setTotalVolume] = useState(0)
     const [btcPercentage, setBtcPercentage] = useState(0)
@@ -62,6 +68,39 @@ function CoinNavbar () {
                 <SmallImage src={ethLogo}/>
             </CoinNavbarText>
             <CoinNavbarBar fraction={ethPercentage} total={100}/>
+=======
+
+    useEffect(() => {
+        getGlobalData().then((res) => setGlobalData(res))
+    }, [])
+
+    return (
+        <CoinNavbarWrapper>
+            <CoinNavbarText>
+                Coins: 
+            </CoinNavbarText>
+            <CoinNavbarText>
+                Exchange:
+            </CoinNavbarText>
+            <CoinNavbarText>
+                Total Money:
+            </CoinNavbarText>
+
+            <CoinNavbarText>
+                Another Money:
+            </CoinNavbarText>
+            <CoinNavbarBar />
+
+            <CoinNavbarText>
+
+            </CoinNavbarText>
+            <CoinNavbarBar />
+
+            <CoinNavbarText>
+                
+            </CoinNavbarText>
+            <CoinNavbarBar />
+>>>>>>> MainChartsLandingDev
 
         </CoinNavbarWrapper>
     )
