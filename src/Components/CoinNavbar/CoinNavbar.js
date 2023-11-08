@@ -51,7 +51,7 @@ function CoinNavbar () {
             <CoinNavbarText>
                 {returnMillBillThou(handleAwaitPrim(globalData, 'market_cap_change_percentage_24h_usd') * handleAwaitPrim(globalData.total_volume, 'usd'))}
             </CoinNavbarText> 
-            <CoinNavbarBar fraction={marketCap24h} total={totalVolume}/>
+            <CoinNavbarBar fraction={Number((marketCap24h).toFixed(3))} total={100}/>
 
             <CoinNavbarText>
                 <SmallImage src={btcLogo}/>
