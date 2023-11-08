@@ -1,10 +1,11 @@
 import { CoinNavbarBarWrapper, CoinNavbarBarFilled } from "./CoinNavbar.style";
 
+function CoinNavbarBar(props) {
+    const { fraction, total } = props
 
-function CoinNavbarBar() {
     return (
         <CoinNavbarBarWrapper>
-            <CoinNavbarBarFilled />
+            <CoinNavbarBarFilled fraction={JSON.stringify(fraction)} total={JSON.stringify(total)} />
         </CoinNavbarBarWrapper>
     )
 }

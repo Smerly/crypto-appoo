@@ -14,8 +14,10 @@ export const CoinNavbarWrapper = tw.div`
 `
 
 export const CoinNavbarText = tw.p`
+    flex
+    flex-row
     text-white
-    m-3
+    mx-1
     text-sm
 `
 
@@ -28,7 +30,18 @@ export const CoinNavbarBarWrapper = styled.div`
 
 export const CoinNavbarBarFilled = styled.div`
     height: 10px;
-    width: 10px;
+    width: ${(props) => {
+        const fraction = Number(props.fraction)
+        const total = props.total
+        const percentage = fraction / total
+        return (50 * percentage)
+
+    }}px;
     background-color: white;
     border-radius: 20px;
+`
+
+export const SmallImage = tw.img`
+    w-3
+    h-3
 `

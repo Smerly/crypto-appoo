@@ -1,10 +1,13 @@
 export const returnMillBillThou = (num) => {
-    if (num >= 1.0e+9) {
-        return `${Math.floor(num / 1.0e+9)}B `
+    if (num >= 1.0e+12) {
+        return `${(num / 1.0e+12).toFixed(2)}T`
+    }
+    else if (num >= 1.0e+9) {
+        return `${(num / 1.0e+9).toFixed(2)}B `
     } else if (num >= 1.0e+6) {
-        return `${Math.floor(num / 1.0e+6)}M`
+        return `${(num / 1.0e+6).toFixed(2)}M`
     } else if (num >= 1.0e+3) {
-        return `${Math.floor(num / 1.0e+3)}K`
+        return `${(num / 1.0e+3).toFixed(2)}K`
     } else {
         return num
     }
