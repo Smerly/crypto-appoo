@@ -16,9 +16,11 @@ export const CoinNavbarWrapper = tw.div`
 export const CoinNavbarText = tw.p`
     flex
     flex-row
+    items-center
     text-white
     mx-1
     text-sm
+    text-center
 `
 
 export const CoinNavbarBarWrapper = styled.div`
@@ -44,4 +46,5 @@ export const CoinNavbarBarFilled = styled.div`
 export const SmallImage = tw.img`
     w-3
     h-3
+    m-2
 `

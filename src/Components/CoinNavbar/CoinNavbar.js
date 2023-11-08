@@ -55,11 +55,13 @@ function CoinNavbar () {
 
             <CoinNavbarText>
                 <SmallImage src={btcLogo}/>
+                {`${Math.floor(btcPercentage)}%`}
             </CoinNavbarText>
             <CoinNavbarBar fraction={btcPercentage} total={100} />
 
             <CoinNavbarText>
                 <SmallImage src={ethLogo}/>
+                {`${Math.floor(ethPercentage)}%`}
             </CoinNavbarText>
             <CoinNavbarBar fraction={ethPercentage} total={100}/>
 
