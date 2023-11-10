@@ -7,7 +7,7 @@ import { getAllCoinsWithImages } from "helpers/getCoin"
 
 function Assets() {
     const [allCoins, setAllCoins] = useState([])
-    const purchasedCurrencies = useSelector((state) => state.portfolio.currencies)
+    const purchasedCurrencies = useSelector((state) => state.persist.portfolio.currencies)
 
     useEffect(() => {
         getAllCoinsWithImages().then((res) => setAllCoins(res))
