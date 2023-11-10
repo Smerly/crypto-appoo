@@ -17,3 +17,7 @@ export const handleAwaitSlice = (obj, str, begin, end) => {
 export const handleAwaitPrim = (obj, str) => {
     return obj ? obj[str] : 'loading...'
 }
+
+export const handleAwaitInt = (obj, str) => {
+    return obj[str] ? obj[str] : 0.111111
+}
