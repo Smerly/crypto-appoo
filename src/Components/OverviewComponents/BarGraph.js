@@ -1,10 +1,11 @@
 import { Bar } from "react-chartjs-2";
+import { useState, useEffect } from "react";
 import { options } from "./options";
 import { Chart as ChartJS, BarElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
 import { getCoinChartData } from "helpers/getCoin";
-import { useState, useEffect } from "react";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import { handleAwaitArray } from "utils/handleAwait";
+import { MainChartWrapper } from "./overview.style";
 
 
 function BarGraph() {
@@ -33,9 +34,9 @@ function BarGraph() {
     }
 
     return (
-        <div>
+        <MainChartWrapper>
             <Bar data={data} options={options}/>
-        </div>
+        </MainChartWrapper>
     )
 }
 
