@@ -1,13 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
-const initialState = 'usd'
+const initialState = {
+    currency: 'usd'
+}
+
+// const initialState = 'usd'
 
 export const currencySlice = createSlice({
     name: 'currency',
     initialState: initialState,
     reducers: {
         changeCurrency: (currentState, action) => {
-            currentState = action.payload
+            currentState.currency = action.payload.currency
         }
     }
 

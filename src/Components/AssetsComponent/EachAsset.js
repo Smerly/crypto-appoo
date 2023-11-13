@@ -5,9 +5,13 @@ import { handleAwaitPrim } from "utils/handleAwait"
 import { roundToHundredth } from "utils/roundToHundredth"
 import { returnArrow, returnGreenOrRedCompare, returnGreenOrRedCondition } from "utils/returnGreenOrRed"
 import CoinBar from "./CoinBar"
+import { useSelector } from "react-redux"
 
 function EachAsset(props) {
     const [currentCoin, setCurrentCoin] = useState('')
+    const CURRENTcy = useSelector((state) => state.persist.currency)
+
+    const [currentPrice, setCurrentPrice] = useState(0)
     const { asset, allCoins } = props
     const { id, name, image, priceOfEach, amountInCurrency, amountOfCoin, datePurchased } = asset
 

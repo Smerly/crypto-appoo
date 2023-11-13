@@ -6,9 +6,11 @@ import { handleAwaitInt, handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import btcLogo from 'images/Bitcoin.png'
 import ethLogo from 'images/ethereum.png'
+import { useSelector } from "react-redux";
 
 
 function CoinNavbar () {
+    const CURRENTcy = useSelector((state) => state.persist.currency)
     const [globalData, setGlobalData] = useState({})
     const [marketCap24h, setMarketCap24h] = useState(0.11111111)
     const [totalVolume, setTotalVolume] = useState({usd: 0})
@@ -24,11 +26,12 @@ function CoinNavbar () {
         })
     }, [])
 
+    console.log(CURRENTcy.currency)
     
     useEffect(() => {
-        setMarketCap24h(Number(handleAwaitInt(globalData, 'market_cap_change_percentage_24h_usd').toFixed(3)))
+        setMarketCap24h(Number(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${CURRENTcy.currency}`).toFixed(3)))
         const totalVol = handleAwaitInt(globalData, 'total_volume')
-        const usdTotalVol = handleAwaitInt(totalVol, 'usd')
+        const usdTotalVol = handleAwaitInt(totalVol, `${CURRENTcy.currency}`)
         setTotalVolume(usdTotalVol)
 
         const marketCapPercentage = handleAwaitInt(globalData, 'market_cap_percentage')
@@ -36,7 +39,7 @@ function CoinNavbar () {
         setEthPercentage(handleAwaitInt(marketCapPercentage, 'eth'))
 
         const marketCap = handleAwaitInt(globalData, 'total_market_cap')
-        setTotalMarketCap(Math.floor(handleAwaitInt(marketCap, 'usd')))
+        setTotalMarketCap(Math.floor(handleAwaitInt(marketCap, `${CURRENTcy.currency}`)))
 
 
 
@@ -56,7 +59,7 @@ function CoinNavbar () {
             </CoinNavbarText>
             <CoinNavbarText>•</CoinNavbarText>
             <CoinNavbarText>
-                {returnMillBillThou(handleAwaitInt(globalData, 'market_cap_change_percentage_24h_usd') * totalVolume)}
+                {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${CURRENTcy.currency}`) * totalVolume)}
             </CoinNavbarText> 
             <CoinNavbarBar fraction={marketCap24h} total={100}/>
 
