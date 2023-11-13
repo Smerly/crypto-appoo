@@ -1,15 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeCurrency } from 'redux/currencySlice'
-import { DropdownMenu, DropdownButton, EachCurrencyButton } from 'Components/NavbarComponents/Navbar.style'
+import { DropdownMenu, DropdownButton } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
 
-function CurrencyDropDown(props) {
-    const CURRENTcy = useSelector((state) => state.persist.currency)
-    // const { CURRENTcy } = props
-
-    const dispatch = useDispatch()
-
+function CurrencyDropDown() {
     const [hidden, setHidden] = useState(true)
     const [currencies, setCurrencies] = useState([])
     useEffect(() => {
@@ -19,14 +12,11 @@ function CurrencyDropDown(props) {
     const show = () => setHidden(!hidden)
     return (
         <div>
-            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{CURRENTcy.currency}</DropdownButton>
+            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>dropdown</DropdownButton>
             {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <ul>
-                    {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {
-                        show()
-                        dispatch(changeCurrency({currency: String(each)}))
-                    }}>{each}</EachCurrencyButton>)}
+                    {currencies.map((each) => <li>{each}</li>)}
                 </ul>
             </DropdownMenu>
         </div>

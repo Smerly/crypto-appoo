@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { getCoin, getCoinChartData } from 'helpers/getCoin';
@@ -15,11 +14,8 @@ import { roundToHundredth } from 'utils/roundToHundredth';
 import { options } from 'Components/CoinListComponent/options'
 
 
-
 function EachCoin(props) {
-    const { eachCoin, index } = props
-    const [coin, setCoin] = useState(eachCoin)
-    const CURRENTcy = useSelector((state) => state.persist.currency)
+    const { coin, index } = props
     const [coinChartData, setCoinChartData] = useState([[1,2],[3,4],[5,6],[7,8], [9,10], [11, 12], [13, 14], [15, 16], [17, 18]])
 
     // Helper Vars
@@ -45,22 +41,20 @@ function EachCoin(props) {
         LinearScale,
         Tooltip,
     )
-    // useEffect(() => {
-    //     console.log('changed in each')
-    //     getCoinChartData(coin.id, CURRENTcy.currency).then((res) => {
-    //         setCoinChartData(res)
-    //     }).catch((err) => {
-    //         return err
-    //     })
-    // }, [])
+    useEffect(() => {
+        getCoinChartData(coin.id).then((res) => {
+            setCoinChartData(res)
+        }).catch((err) => {
+            return err
+        })
+    }, [])
    
     // Data for chart
     const data = {
         labels: weekFromNow,
         datasets: [
             {
-                // data: weekOfChartData,
-                data: handleAwait(coin, 'sparkline_in_7d.price'),
+                data: weekOfChartData,
                 tension: 0.4,
                 borderColor: returnGreenOrRed(weekOfChartData),
                 fill: true,
@@ -73,11 +67,11 @@ function EachCoin(props) {
         <EachCoinWrapper>
             <CoinHeader>{index}</CoinHeader>
             <Link className='flex flex-row justify-center items-center text-sm ml-8' to={`/coin/${coin.id}`}>
-                <CoinImage src={handleAwait(eachCoin, 'image')}/>
+                <CoinImage src={handleAwait(coin, 'image')}/>
                 {handleAwait(coin, 'name')}
             </Link>
             <CoinHeader className='ml-7'>
-                ${roundToHundredth(handleAwait(eachCoin, 'current_price'))}
+                ${roundToHundredth(handleAwait(coin, 'current_price'))}
             </CoinHeader>
             <CoinHeader>
                 {roundToHundredth(handleAwait(coin, 'price_change_percentage_1h_in_currency'))}%

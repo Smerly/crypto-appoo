@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
-import { useSelector } from "react-redux"
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
+import { useEffect, useState } from "react"
 import { handleAwait, handleAwaitArray } from "utils/handleAwait"
 import { getGradient } from "utils/getGradient"
 import { returnMillBillThou } from "utils/returnMillBillThou"
@@ -11,8 +10,6 @@ import { MainChartWrapper } from "./overview.style"
 
 function LineGraph () {
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
-
-    const CURRENTcy = useSelector((state) => state.persist.currency)
 
     ChartJS.register(
         LineElement,
@@ -25,7 +22,7 @@ function LineGraph () {
 
 
     useEffect(() => {
-        getCoinChartData('bitcoin', CURRENTcy.currency).then((res) => setCoinData(res)).catch((err) => {
+        getCoinChartData('bitcoin').then((res) => setCoinData(res)).catch((err) => {
             console.log(err)
         })
     }, [])
