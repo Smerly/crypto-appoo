@@ -6,13 +6,17 @@ import { render } from '@testing-library/react'
 import { Coins, CoinsWrapper, EachCoinWrapper, CoinTitle, CoinHeader, CoinName, EachCoinMap } from 'Components/CoinListComponent/CoinList.style'
 import { getAllCoinsWithImages } from 'helpers/getCoin'
 import EachCoin from './EachCoin'
+import { useSelector } from 'react-redux'
+import { handleAwaitPrim } from 'utils/handleAwait'
+import { render } from '@testing-library/react'
 
 
 function CoinList () {
     const [coins, setCoins] = useState([])
     const [loadCounter, setLoadCounter] = useState(0)
+    
     const currencyType = useSelector((state) => state.persist.currency)
-
+    
     // Case for load counter change
     useEffect(() => {
         getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
@@ -31,6 +35,10 @@ function CoinList () {
             return err
         })
     }, [currencyType.currency])
+
+    const addToLoadCounter = () => {
+        setLoadCounter(loadCounter + 1)
+    }
 
     const addToLoadCounter = () => {
         setLoadCounter(loadCounter + 1)
@@ -57,7 +65,6 @@ function CoinList () {
                 >
                 
                 {/* Legend Header */}
-             
 
                 <EachCoinMap>
                     <EachCoinWrapper>
@@ -72,8 +79,6 @@ function CoinList () {
                         <CoinHeader>Last 7d</CoinHeader>
                     </EachCoinWrapper>
                 </EachCoinMap>
-                 
-
 
                 {coins.map((eachCoin, i) => {
                 return (

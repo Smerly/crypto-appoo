@@ -11,7 +11,7 @@ import { MainChartWrapper } from "./overview.style";
 
 function BarGraph() {
     const currencyType = useSelector((state) => state.persist.currency)
-
+    
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
 
     ChartJS.register(

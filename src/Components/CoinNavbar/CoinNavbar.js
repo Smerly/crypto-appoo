@@ -7,11 +7,12 @@ import { handleAwaitInt, handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import btcLogo from 'images/Bitcoin.png'
 import ethLogo from 'images/ethereum.png'
+import { useSelector } from "react-redux";
 
 
 function CoinNavbar () {
     const currencyType = useSelector((state) => state.persist.currency)
-
+    
     const [globalData, setGlobalData] = useState({})
     const [marketCap24h, setMarketCap24h] = useState(0.11111111)
     const [totalVolume, setTotalVolume] = useState({usd: 0})
@@ -26,7 +27,6 @@ function CoinNavbar () {
             console.log(err)
         })
     }, [])
-
     
     useEffect(() => {
         setMarketCap24h(Number(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`).toFixed(3)))
@@ -57,8 +57,8 @@ function CoinNavbar () {
             </CoinNavbarText>
             <CoinNavbarText>•</CoinNavbarText>
             <CoinNavbarText>
-            {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)}
-            </CoinNavbarText> 
+              {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)}
+            </CoinNavbarText>
             <CoinNavbarBar fraction={marketCap24h} total={100}/>
 
             <CoinNavbarText>

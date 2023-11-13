@@ -1,6 +1,7 @@
 import { persistReducer, persistStore } from 'redux-persist'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage';
+// Portfolio
 import { portfolioSlice } from './portfolioSlice'
 import portfolioReducer from './portfolioSlice'
 import { currencySlice } from './currencySlice';

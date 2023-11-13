@@ -22,7 +22,7 @@ function NavbarLarge() {
                 <SearchBar/>
             </div>
 
-            <CurrencyDropDown />
+            <CurrencyDropDown currencyType={currencyType}/>
 
             <DarkMode>Temp DarkMode Button</DarkMode>
         </NavbarRespBig>

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
@@ -15,10 +16,12 @@ import { roundToHundredth } from 'utils/roundToHundredth';
 import { options } from 'Components/CoinListComponent/options'
 
 
+
 function EachCoin(props) {
     const { eachCoin, index } = props
-    const CURRENTcy = useSelector((state) => state.persist.currency)
 
+    const currentType = useSelector((state) => state.persist.currency)
+    
     const [coin, setCoin] = useState(eachCoin)
     const [coinChartData, setCoinChartData] = useState([[1,2],[3,4],[5,6],[7,8], [9,10], [11, 12], [13, 14], [15, 16], [17, 18]])
 

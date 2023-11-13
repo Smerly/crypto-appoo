@@ -6,9 +6,9 @@ import { CoinImage } from "Components/CoinListComponent/CoinList.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
 import { getAllCoinsWithImages } from "helpers/getCoin"
 import { addCurrency } from "redux/portfolioSlice"
-
 function AddAsset() {
     const currentType = useSelector((state) => state.persist.currency)
+
     const dispatch = useDispatch()
 
     const [show, setShow] = useState(false)

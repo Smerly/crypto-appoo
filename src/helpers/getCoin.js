@@ -1,5 +1,4 @@
 
-
 export async function getCoin(coin) {
     const desiredCoin = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}`)
     const temp = await desiredCoin.json()
