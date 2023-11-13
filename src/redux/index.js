@@ -1,17 +1,21 @@
 import { persistReducer, persistStore } from 'redux-persist'
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage';
 import { portfolioSlice } from './portfolioSlice'
 import portfolioReducer from './portfolioSlice'
+import { currencySlice } from './currencySlice';
+import currencyReducer from './currencySlice'
+
+const rootReducer = combineReducers({currency: currencyReducer, portfolio: portfolioReducer})
 
 const persistedReducer = persistReducer({
     key: 'root',
     storage: storage,
-}, portfolioReducer)
+}, rootReducer)
 
 const store = configureStore({
     reducer: {
-        portfolio: persistedReducer
+        persist: persistedReducer
     }
 })
 

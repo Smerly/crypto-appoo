@@ -1,4 +1,5 @@
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { options } from "./options";
 import { Chart as ChartJS, BarElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
@@ -9,6 +10,8 @@ import { MainChartWrapper } from "./overview.style";
 
 
 function BarGraph() {
+    const currencyType = useSelector((state) => state.persist.currency)
+
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
 
     ChartJS.register(
@@ -16,7 +19,7 @@ function BarGraph() {
     )
 
     useEffect(() => {
-        getCoinChartData('bitcoin').then((res) => setCoinData(res)).catch((err) => {
+        getCoinChartData('bitcoin', currencyType.currency).then((res) => setCoinData(res)).catch((err) => {
             console.log(err)
         })
     }, [])
