@@ -33,6 +33,10 @@ function CoinList () {
         })
     }, [currencyType.currency])
 
+    const addToLoadCounter = () => {
+        setLoadCounter(loadCounter+1)
+    }
+
     return (
         <Coins>
             <InfiniteScroll
