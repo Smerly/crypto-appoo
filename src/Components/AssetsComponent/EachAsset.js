@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { formatNumber } from "utils/formatNumber"
 import { EachAssetWrapper, AssetImage, CoinLabelBox, AssetName, AssetInfoBoxes, AssetInfoBoxLabel, MarketPriceContainer, YourCoinContainer, MarketPriceBox, YourCoinBox, InfoText } from "./Assets.style"
 import { handleAwaitPrim } from "utils/handleAwait"
@@ -9,9 +10,9 @@ import { useSelector } from "react-redux"
 
 function EachAsset(props) {
     const [currentCoin, setCurrentCoin] = useState('')
-    const CURRENTcy = useSelector((state) => state.persist.currency)
 
-    const [currentPrice, setCurrentPrice] = useState(0)
+    const currencyType = useSelector((state) => state.persist.currency)
+    
     const { asset, allCoins } = props
     const { id, name, image, priceOfEach, amountInCurrency, amountOfCoin, datePurchased } = asset
 

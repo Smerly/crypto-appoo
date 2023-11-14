@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { getGlobalData } from "helpers/getCoin";
 import { CoinNavbarWrapper, CoinNavbarText, SmallImage } from "./CoinNavbar.style";
 import CoinNavbarBar from "./CoinNavbarBar";
@@ -10,7 +11,8 @@ import { useSelector } from "react-redux";
 
 
 function CoinNavbar () {
-    const CURRENTcy = useSelector((state) => state.persist.currency)
+    const currencyType = useSelector((state) => state.persist.currency)
+    
     const [globalData, setGlobalData] = useState({})
     const [marketCap24h, setMarketCap24h] = useState(0.11111111)
     const [totalVolume, setTotalVolume] = useState({usd: 0})
@@ -25,13 +27,11 @@ function CoinNavbar () {
             console.log(err)
         })
     }, [])
-
-    console.log(CURRENTcy.currency)
     
     useEffect(() => {
-        setMarketCap24h(Number(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${CURRENTcy.currency}`).toFixed(3)))
+        setMarketCap24h(Number(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`).toFixed(3)))
         const totalVol = handleAwaitInt(globalData, 'total_volume')
-        const usdTotalVol = handleAwaitInt(totalVol, `${CURRENTcy.currency}`)
+        const usdTotalVol = handleAwaitInt(totalVol, `${currencyType.currency}`)
         setTotalVolume(usdTotalVol)
 
         const marketCapPercentage = handleAwaitInt(globalData, 'market_cap_percentage')
@@ -39,11 +39,9 @@ function CoinNavbar () {
         setEthPercentage(handleAwaitInt(marketCapPercentage, 'eth'))
 
         const marketCap = handleAwaitInt(globalData, 'total_market_cap')
-        setTotalMarketCap(Math.floor(handleAwaitInt(marketCap, `${CURRENTcy.currency}`)))
+        setTotalMarketCap(Math.floor(handleAwaitInt(marketCap, `${currencyType.currency}`)))
 
-
-
-    }, [globalData])
+    }, [globalData, currencyType.currency])
     
     return (
         <CoinNavbarWrapper>
@@ -59,8 +57,8 @@ function CoinNavbar () {
             </CoinNavbarText>
             <CoinNavbarText>•</CoinNavbarText>
             <CoinNavbarText>
-                {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${CURRENTcy.currency}`) * totalVolume)}
-            </CoinNavbarText> 
+              {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)}
+            </CoinNavbarText>
             <CoinNavbarBar fraction={marketCap24h} total={100}/>
 
             <CoinNavbarText>

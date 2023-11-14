@@ -4,8 +4,6 @@ const initialState = {
     currency: 'usd'
 }
 
-// const initialState = 'usd'
-
 export const currencySlice = createSlice({
     name: 'currency',
     initialState: initialState,
@@ -14,8 +12,8 @@ export const currencySlice = createSlice({
             currentState.currency = action.payload.currency
         }
     }
-
 })
 
 export const { changeCurrency } = currencySlice.actions
-export default currencySlice.reducer
+
+export default currencySlice.reducer;

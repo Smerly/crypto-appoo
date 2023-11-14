@@ -2,12 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
-import { getCoin, getCoinChartData } from 'helpers/getCoin';
 import { Line } from 'react-chartjs-2';
-import { EachCoinWrapper, CoinTitle, CoinName, CoinImage, CoinHeader, CoinBar, CoinBarWrapper, CoinBarLabel, CoinBarLeft, LabelRight, Last7DGraph} from 'Components/CoinListComponent/CoinList.style';
 import { type } from '@testing-library/user-event/dist/type';
-import { handleAwait, handleAwaitChart, handleAwaitSlice } from 'utils/handleAwait';
+import { handleAwait, handleAwaitChart, handleAwaitPrim, handleAwaitSlice } from 'utils/handleAwait';
+import { getCoin, getCoinChartData } from 'helpers/getCoin';
+import { EachCoinWrapper, CoinTitle, CoinName, CoinImage, CoinHeader, CoinBar, CoinBarWrapper, CoinBarLabel, CoinBarLeft, LabelRight, Last7DGraph} from 'Components/CoinListComponent/CoinList.style';
 import { returnPercentage } from 'utils/returnPercentage'
 import { returnGreenOrRed } from 'utils/returnGreenOrRed';
 import { returnMillBillThou } from 'utils/returnMillBillThou';
@@ -18,18 +19,27 @@ import { options } from 'Components/CoinListComponent/options'
 
 function EachCoin(props) {
     const { eachCoin, index } = props
+
+    const currentType = useSelector((state) => state.persist.currency)
+    
     const [coin, setCoin] = useState(eachCoin)
-    const CURRENTcy = useSelector((state) => state.persist.currency)
     const [coinChartData, setCoinChartData] = useState([[1,2],[3,4],[5,6],[7,8], [9,10], [11, 12], [13, 14], [15, 16], [17, 18]])
 
     // Helper Vars
 
     const today = new Date()
+    const coinSparkLine = handleAwait(coin, 'sparkline_in_7d')
     const daysInAWeek = ["Sun", 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
     const weekOfChartData = handleAwaitChart(coinChartData, 'prices').slice(0,7)
 
-    // Make weekFromNow list days of the week according to the current day
+    const returnDailyWeekData = (arr) => {
+        return arr.filter((each, i) => i % 24 === 0)
+    }
+    useEffect(() => {
+        setCoinChartData(returnDailyWeekData(handleAwait(coinSparkLine, 'price')))
+    }, [])
 
+    // Make weekFromNow list days of the week according to the current day
     let weekIndex = 0
     const weekFromNow = daysInAWeek.map((each) => {
         const indexedDate = new Date()
@@ -45,22 +55,13 @@ function EachCoin(props) {
         LinearScale,
         Tooltip,
     )
-    // useEffect(() => {
-    //     console.log('changed in each')
-    //     getCoinChartData(coin.id, CURRENTcy.currency).then((res) => {
-    //         setCoinChartData(res)
-    //     }).catch((err) => {
-    //         return err
-    //     })
-    // }, [])
-   
+
     // Data for chart
     const data = {
         labels: weekFromNow,
         datasets: [
             {
-                // data: weekOfChartData,
-                data: handleAwait(coin, 'sparkline_in_7d.price'),
+                data: coinChartData,
                 tension: 0.4,
                 borderColor: returnGreenOrRed(weekOfChartData),
                 fill: true,
@@ -80,26 +81,26 @@ function EachCoin(props) {
                 ${roundToHundredth(handleAwait(eachCoin, 'current_price'))}
             </CoinHeader>
             <CoinHeader>
-                {roundToHundredth(handleAwait(coin, 'price_change_percentage_1h_in_currency'))}%
+                {roundToHundredth(handleAwait(eachCoin, 'price_change_percentage_1h_in_currency'))}%
             </CoinHeader>
             <CoinHeader>
-                {roundToHundredth(handleAwait(coin, 'price_change_percentage_24h'))}
+                {roundToHundredth(handleAwait(eachCoin, 'price_change_percentage_24h'))}
             </CoinHeader>
             <CoinHeader>
-                {roundToHundredth(handleAwait(coin, 'price_change_percentage_7d_in_currency'))}
+                {roundToHundredth(handleAwait(eachCoin, 'price_change_percentage_7d_in_currency'))}
             </CoinHeader>
 
             {/* CoinBar for circulating_supply / total_supply */}
 
             <CoinBarWrapper className='ml-auto'>
                 <CoinBarLabel>
-                    {returnMillBillThou(roundToHundredth(handleAwait(coin,'total_volume')))}
+                    {returnMillBillThou(roundToHundredth(handleAwait(eachCoin,'total_volume')))}
                     <LabelRight>
-                        {returnMillBillThou(roundToHundredth(handleAwait(coin, 'market_cap')))}
+                        {returnMillBillThou(roundToHundredth(handleAwait(eachCoin, 'market_cap')))}
                     </LabelRight>
                 </CoinBarLabel>
                 <CoinBar>
-                    <CoinBarLeft percentageOwned={returnPercentage(coin.total_volume, coin.market_cap)}/>
+                    <CoinBarLeft percentageOwned={returnPercentage(eachCoin.total_volume, eachCoin.market_cap)}/>
                 </CoinBar>
             </CoinBarWrapper>
 
@@ -107,13 +108,13 @@ function EachCoin(props) {
 
             <CoinBarWrapper className='ml-20'>
                 <CoinBarLabel>
-                    {returnMillBillThou(roundToHundredth(handleAwait(coin, 'circulating_supply')))}
+                    {returnMillBillThou(roundToHundredth(handleAwait(eachCoin, 'circulating_supply')))}
                     <LabelRight>
-                        {returnMillBillThou(roundToHundredth(handleAwait(coin, 'total_supply')))}
+                        {returnMillBillThou(roundToHundredth(handleAwait(eachCoin, 'total_supply')))}
                     </LabelRight>
                 </CoinBarLabel>
                 <CoinBar>
-                    <CoinBarLeft percentageOwned={returnPercentage(coin.circulating_supply, coin.total_supply)}/>
+                    <CoinBarLeft percentageOwned={returnPercentage(eachCoin.circulating_supply, eachCoin.total_supply)}/>
                 </CoinBar>
             </CoinBarWrapper>
             
