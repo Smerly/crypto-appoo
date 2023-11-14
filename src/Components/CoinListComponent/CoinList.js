@@ -2,7 +2,6 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { handleAwaitPrim } from 'utils/handleAwait'
-import { render } from '@testing-library/react'
 import { Coins, CoinsWrapper, EachCoinWrapper, CoinTitle, CoinHeader, CoinName, EachCoinMap } from 'Components/CoinListComponent/CoinList.style'
 import { getAllCoins, getCoin, getAllCoinsWithImages } from 'helpers/getCoin'
 import EachCoin from './EachCoin'
@@ -33,10 +32,6 @@ function CoinList () {
             return err
         })
     }, [currencyType.currency])
-
-    const addToLoadCounter = () => {
-        setLoadCounter(loadCounter + 1)
-    }
 
     return (
         <Coins>
