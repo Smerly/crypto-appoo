@@ -28,7 +28,6 @@ function CoinList () {
         getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
             setCoins([])
             setCoins(res)
-            setRenderedCoin(res.slice(0, 10))
         }).catch((err) => {
             return err
         })
@@ -43,7 +42,7 @@ function CoinList () {
             <InfiniteScroll
                 dataLength={coins.length}                
                 hasMore={true}
-                next={getMoreData}
+                next={addToLoadCounter}
                 loader={<h4>Loading...</h4>}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>

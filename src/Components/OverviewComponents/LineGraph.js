@@ -2,7 +2,6 @@ import { Line } from "react-chartjs-2"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
-import { useEffect, useState } from "react"
 import { handleAwait, handleAwaitArray } from "utils/handleAwait"
 import { getGradient } from "utils/getGradient"
 import { returnMillBillThou } from "utils/returnMillBillThou"

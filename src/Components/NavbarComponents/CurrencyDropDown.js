@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { DropdownMenu, DropdownButton } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
 

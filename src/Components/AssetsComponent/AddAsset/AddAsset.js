@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Dialog, Transition } from '@headlessui/react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton } from "../Assets.style"
 import { CoinImage } from "../Assets.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
