@@ -1,22 +1,32 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { handleAwaitPrim } from 'utils/handleAwait'
+import { render } from '@testing-library/react'
 import { Coins, CoinsWrapper, EachCoinWrapper, CoinTitle, CoinHeader, CoinName, EachCoinMap } from 'Components/CoinListComponent/CoinList.style'
 import { getAllCoins, getCoin, getAllCoinsWithImages } from 'helpers/getCoin'
 import EachCoin from './EachCoin'
 
 
 function CoinList () {
-    const [coins, setCoins] = useState('hi')
-    const [renderedCoin, setRenderedCoin] = useState([])
-
-    // This is for features later down the road
-    const updateCoinSort = (sortType) => {
-        setRenderedCoin([...renderedCoin].sort((a, b) => {
-            return b[sortType] - a[sortType]
-        }))
-    }
+    const [coins, setCoins] = useState([])
+    const [loadCounter, setLoadCounter] = useState(0)
+    
+    const currencyType = useSelector((state) => state.persist.currency)
+    
+    // Case for load counter change
     useEffect(() => {
-        getAllCoinsWithImages().then((res) => {
+        getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
+            setCoins([...coins, ...res])
+        }).catch((err) => {
+            return err
+        })
+    }, [loadCounter])
+
+    // Case for Currency type change, to avoid duplicates
+    useEffect(() => {
+        getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
+            setCoins([])
             setCoins(res)
             setRenderedCoin(res.slice(0, 10))
         }).catch((err) => {
@@ -24,14 +34,14 @@ function CoinList () {
         })
     }, [])
 
-    const getMoreData = () => {
-        setRenderedCoin([...renderedCoin, ...coins.slice(renderedCoin.length, renderedCoin.length + 5)])
+    const addToLoadCounter = () => {
+        setLoadCounter(loadCounter + 1)
     }
 
     return (
         <Coins>
             <InfiniteScroll
-                dataLength={renderedCoin.length} //This is important field to render the next data
+                dataLength={coins.length}                
                 hasMore={true}
                 next={getMoreData}
                 loader={<h4>Loading...</h4>}
@@ -63,14 +73,12 @@ function CoinList () {
                         <CoinHeader className='mr-16'>Circulating/Total Supply</CoinHeader>
                         <CoinHeader>Last 7d</CoinHeader>
                     </EachCoinWrapper>
-                 </EachCoinMap>
-                 
+                </EachCoinMap>
 
-
-                {renderedCoin.map((eachCoin, i) => {
+                {coins.map((eachCoin, i) => {
                 return (
                     <EachCoinMap className='overflow-x-scroll'>
-                        <EachCoin coin={eachCoin} index={i+1}/>
+                        <EachCoin eachCoin={eachCoin} index={i+1}/>
                     </EachCoinMap>
                 )
             })}

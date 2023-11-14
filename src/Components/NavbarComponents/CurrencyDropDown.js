@@ -3,6 +3,9 @@ import { DropdownMenu, DropdownButton } from 'Components/NavbarComponents/Navbar
 import { getCoin } from 'helpers/getCoin'
 
 function CurrencyDropDown() {
+    const dispatch = useDispatch()
+    const currencyType = useSelector((state) => state.persist.currency)
+
     const [hidden, setHidden] = useState(true)
     const [currencies, setCurrencies] = useState([])
     useEffect(() => {
@@ -12,11 +15,14 @@ function CurrencyDropDown() {
     const show = () => setHidden(!hidden)
     return (
         <div>
-            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>dropdown</DropdownButton>
+            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType.currency}</DropdownButton>
             {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <ul>
-                    {currencies.map((each) => <li>{each}</li>)}
+                    {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {
+                            show()
+                            dispatch(changeCurrency({currency: String(each)}))
+                    }}>{each}</EachCurrencyButton>)}
                 </ul>
             </DropdownMenu>
         </div>

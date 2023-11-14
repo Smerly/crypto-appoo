@@ -6,6 +6,7 @@ import CurrencyDropDown from "Components/NavbarComponents/CurrencyDropDown"
 import { DarkMode } from "Components/NavbarComponents/Navbar.style"
 
 function NavbarLarge() {
+    const currencyType = useSelector((state) => state.persist.currency)
     return (
         <NavbarRespBig>
             <Link className='navbar-links' to='/'>
@@ -20,7 +21,7 @@ function NavbarLarge() {
                 <SearchBar/>
             </div>
 
-            <CurrencyDropDown />
+            <CurrencyDropDown currencyType={currencyType}/>
 
             <DarkMode>Temp DarkMode Button</DarkMode>
         </NavbarRespBig>
