@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
 import { handleAwait, handleAwaitArray } from "utils/handleAwait"

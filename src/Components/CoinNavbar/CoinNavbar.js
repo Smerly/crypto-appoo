@@ -7,7 +7,6 @@ import { handleAwaitInt, handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import btcLogo from 'images/Bitcoin.png'
 import ethLogo from 'images/ethereum.png'
-import { useSelector } from "react-redux";
 
 
 function CoinNavbar () {
