@@ -89,3 +89,7 @@ export const SearchInput = tw.input`
     text-white 
     bg-lighterGray
 `
+export const EachCurrencyButton = tw.button`
+    flex
+    flex-row
+`
