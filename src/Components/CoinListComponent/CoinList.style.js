@@ -98,5 +98,6 @@ export const LabelRight = tw.div`
 `
 
 export const EachCoinSelection = tw.button`
-    
+    flex
+    flex-row
 `

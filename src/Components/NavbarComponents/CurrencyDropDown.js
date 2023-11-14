@@ -17,8 +17,7 @@ function CurrencyDropDown() {
     const show = () => setHidden(!hidden)
     return (
         <div>
-            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType.currency}</DropdownButton>
-            {/* The DropdownMenu's initial state is hidden */}
+<DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType.currency}</DropdownButton>            {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <ul>
                     {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {

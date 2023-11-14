@@ -26,7 +26,7 @@ function EachCoin(props) {
     // Helper Vars
 
     const today = new Date()
-    const coinSparkLine = handleAwait(coin, 'sparkline_in_7d')
+    const coinSparkLine = handleAwait(eachCoin, 'sparkline_in_7d')
     const daysInAWeek = ["Sun", 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
     const weekOfChartData = handleAwaitChart(coinChartData, 'prices').slice(0,7)
 
@@ -72,11 +72,11 @@ function EachCoin(props) {
         <EachCoinWrapper>
             <CoinHeader>{index}</CoinHeader>
             <Link className='flex flex-row justify-center items-center text-sm ml-8' to={`/coin/${coin.id}`}>
-                <CoinImage src={handleAwait(coin, 'image')}/>
-                {handleAwait(coin, 'name')}
+                <CoinImage src={handleAwait(eachCoin, 'image')}/>
+                {handleAwait(eachCoin, 'name')}
             </Link>
             <CoinHeader className='ml-7'>
-                ${roundToHundredth(handleAwait(coin, 'current_price'))}
+                ${roundToHundredth(handleAwait(eachCoin, 'current_price'))}
             </CoinHeader>
             <CoinHeader>
                 {roundToHundredth(handleAwait(eachCoin, 'price_change_percentage_1h_in_currency'))}%
