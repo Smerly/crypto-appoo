@@ -9,7 +9,9 @@ module.exports = {
     extend: {
       colors: {
         primary: '#191B1F',
-        secondary: '#1F2128',
+        // primary: 'rgba(31,31,40,0.8)',
+        // secondary: '#1F2128',
+        secondary: 'rgba(31,31,40,0.8)',
         lighterGray: '#2C2F36'
       },
       borderRadius: {
