@@ -57,9 +57,10 @@ export const NavbarHidden = tw.div`
 `
 
 export const DropdownButton = tw.button`
+    text-white
     rounded-lg 
     border-2
-    border-gray-500
+    border-gray-700
     border-solid
     bg-secondary
     w-32 
@@ -74,15 +75,19 @@ export const DropdownMenu = styled.div`
 
 `
 
+export const DropdownList = styled.ul`
+
+`
+
 export const DarkMode = styled.button`
 `
 
 export const SearchBarWrapper = tw.form`
+    bg-secondary
     rounded-xl
     border-2
-    border-gray-500
+    border-gray-700
     border-solid
-    bg-secondary
 `
 
 export const SearchIconWrapper = tw.div`
@@ -102,7 +107,7 @@ export const SearchInput = tw.input`
     pl-10 
     text-md 
     text-white 
-    bg-lighterGray
+    bg-secondary
 `
 
 export const EachCurrencyButton = tw.button`
