@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { Line } from 'react-chartjs-2';
 import { type } from '@testing-library/user-event/dist/type';
@@ -15,7 +15,6 @@ import { roundToHundredth } from 'utils/roundToHundredth';
 import { options } from 'Components/CoinListComponent/options'
 
 
-
 function EachCoin(props) {
     const { eachCoin, index } = props
 
@@ -27,7 +26,7 @@ function EachCoin(props) {
     // Helper Vars
 
     const today = new Date()
-    const coinSparkLine = handleAwait(coin, 'sparkline_in_7d')
+    const coinSparkLine = handleAwait(eachCoin, 'sparkline_in_7d')
     const daysInAWeek = ["Sun", 'Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat']
     const weekOfChartData = handleAwaitChart(coinChartData, 'prices').slice(0,7)
 
@@ -74,7 +73,7 @@ function EachCoin(props) {
             <CoinHeader>{index}</CoinHeader>
             <Link className='flex flex-row justify-center items-center text-sm ml-8' to={`/coin/${coin.id}`}>
                 <CoinImage src={handleAwait(eachCoin, 'image')}/>
-                {handleAwait(coin, 'name')}
+                {handleAwait(eachCoin, 'name')}
             </Link>
             <CoinHeader className='ml-7'>
                 ${roundToHundredth(handleAwait(eachCoin, 'current_price'))}

@@ -1,6 +1,6 @@
 import { Bar } from "react-chartjs-2";
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux"
 import { options } from "./options";
 import { Chart as ChartJS, BarElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
 import { getCoinChartData } from "helpers/getCoin";

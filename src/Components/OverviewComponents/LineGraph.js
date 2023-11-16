@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
 import { Line } from "react-chartjs-2"
+import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, Filler } from 'chart.js'
 import { handleAwait, handleAwaitArray } from "utils/handleAwait"
@@ -13,8 +13,6 @@ function LineGraph () {
     const currencyType = useSelector((state) => state.persist.currency)
 
     const [coinData, setCoinData] = useState([1,2,4,1,2,4])
-
-    const CURRENTcy = useSelector((state) => state.persist.currency)
 
     ChartJS.register(
         LineElement,
