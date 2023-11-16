@@ -4,6 +4,7 @@ import { formatNumber } from "utils/formatNumber"
 import { EachAssetWrapper, AssetImage, CoinLabelBox, AssetName, AssetInfoBoxes, AssetInfoBoxLabel, MarketPriceContainer, YourCoinContainer, MarketPriceBox, YourCoinBox, InfoText } from "./Assets.style"
 import { handleAwaitPrim } from "utils/handleAwait"
 import { roundToHundredth } from "utils/roundToHundredth"
+import { formatDateSlash } from 'utils/formatDate'
 import { returnArrow, returnGreenOrRedCompare, returnGreenOrRedCondition } from "utils/returnGreenOrRed"
 import CoinBar from "./CoinBar"
 
@@ -14,8 +15,6 @@ function EachAsset(props) {
     
     const { asset, allCoins } = props
     const { id, name, image, priceOfEach, amountInCurrency, amountOfCoin, datePurchased } = asset
-
-    const dateFormatted = `${new Date(datePurchased).getMonth()+1}/${new Date(datePurchased).getDate()}/${new Date(datePurchased).getFullYear()}`
 
     useEffect(() => {
         setCurrentCoin(allCoins.filter((each) => each.id === id)[0])
@@ -80,7 +79,7 @@ function EachAsset(props) {
                             {returnArrow(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}
                         </InfoText>
                         <InfoText>
-                            Date Purchased: {dateFormatted}
+                            Date Purchased: {formatDateSlash(datePurchased)}
                         </InfoText>
                     </YourCoinBox>
                 </YourCoinContainer>
