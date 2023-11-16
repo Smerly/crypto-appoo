@@ -109,7 +109,6 @@ export const SearchInput = tw.input`
     text-white 
     bg-secondary
 `
-
 export const EachCurrencyButton = tw.button`
     flex
     flex-row
