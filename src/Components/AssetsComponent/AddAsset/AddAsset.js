@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton } from "../Assets.style"
 import { CoinImage } from "../Assets.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
-import { getAllCoinsWithImages } from "helpers/getCoin"
+import { getAllCoinsWithImages, getAllCoinsWithImagesNoPage } from "helpers/getCoin"
 import { addCurrency } from "redux/portfolioSlice"
 
 function AddAsset() {
-    const currentType = useSelector((state) => state.persist.currency)
+    const currencyType = useSelector((state) => state.persist.currency)
 
     const dispatch = useDispatch()
 
@@ -47,7 +47,8 @@ function AddAsset() {
         setSelectedCoinImage: setSelectedCoinImage
     }
     useEffect(() => {
-        getAllCoinsWithImages().then((res) => {
+        getAllCoinsWithImagesNoPage(currencyType.currency).then((res) => {
+            console.log(res)
             setCoinNames(res.map((each) => [each.name, each.id]))
             setCoinImages(res.map((each) => [each.image, each.id]))
             setCoinPrices(res.map((each) => [each.current_price, each.id]))

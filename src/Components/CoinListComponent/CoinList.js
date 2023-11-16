@@ -27,7 +27,7 @@ function CoinList () {
         getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
             console.log(currencyType.currency)
             setCoins([])
-            setCoins(res)
+            setCoins([...res])
         }).catch((err) => {
             return err
         })

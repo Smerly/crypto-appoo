@@ -16,7 +16,7 @@ function Assets() {
 
     useEffect(() => {
         // Get only the coins that we have purchased
-        getAllCoinsWithImages(currencyType.currency).then((res) => setAllCoins(res.filter((each) => boughtCurrencyIds.includes(each.id))))
+        // getAllCoinsWithImages(currencyType.currency).then((res) => setAllCoins( Array.isArray(res) ? res.filter((each) => boughtCurrencyIds.includes(each.id)) : [res]))
         // Get coins history that we have purchased
         setAllHistoryCoins(purchasedCurrencies.map((each) => getHistoricalCoin(each, each.datePurchased, currencyType.currency).then((res) => res)))
     }, [currencyType.currency])
@@ -27,7 +27,7 @@ function Assets() {
     // redux only record id, name, priceWhenBought
     // In assets:
         // Make api call to get current data with redux id (done)
-        // Make api call to get historical data with redux id
+        // Make api call to get historical data with redux id (done)
 
     
     

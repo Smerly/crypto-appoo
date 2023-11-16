@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from 'redux/currencySlice'
 import { DropdownMenu, DropdownButton, EachCurrencyButton } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
+import { handleAwaitPrim } from 'utils/handleAwait'
 
 function CurrencyDropDown() {
+    const [currencyTypeState , setCurrencyTypeState] = useState('')
     const dispatch = useDispatch()
     const currencyType = useSelector((state) => state.persist.currency)
 
@@ -14,10 +16,17 @@ function CurrencyDropDown() {
         getCoin('bitcoin').then((res) => setCurrencies(Object.keys(res.market_data.price_change_24h_in_currency)))
     }, [])
 
+    useEffect(() => {
+        setCurrencyTypeState(currencyType.currency)
+    }, [currencyType.currency])
+
+    console.log(currencyType)
+
     const show = () => setHidden(!hidden)
     return (
         <div>
-<DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType.currency}</DropdownButton>            {/* The DropdownMenu's initial state is hidden */}
+            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyTypeState}</DropdownButton>            
+            {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <ul>
                     {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {
