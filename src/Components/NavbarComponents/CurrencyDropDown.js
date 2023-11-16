@@ -21,7 +21,7 @@ function CurrencyDropDown() {
             {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <DropdownList>
-                    {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {
+                    {currencies.map((each) => <EachCurrencyButton key={each} value={each} onClick={(e) => {
                             show()
                             dispatch(changeCurrency({currency: String(each)}))
                     }}>{each}</EachCurrencyButton>)}
