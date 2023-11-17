@@ -7,6 +7,7 @@ import { handleAwaitInt, handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import btcLogo from 'images/Bitcoin.png'
 import ethLogo from 'images/ethereum.png'
+import { returnArrow, returnGreenOrRedCondition } from "utils/returnGreenOrRed";
 
 
 function CoinNavbar () {
@@ -55,8 +56,8 @@ function CoinNavbar () {
                 {returnMillBillThou(totalMarketCap)}
             </CoinNavbarText>
             <CoinNavbarText>•</CoinNavbarText>
-            <CoinNavbarText>
-              {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)}
+            <CoinNavbarText className={`${returnGreenOrRedCondition(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume > 0)}`}>
+              {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)} {returnArrow(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume, 0)}
             </CoinNavbarText>
             <CoinNavbarBar fraction={marketCap24h} total={100}/>
 

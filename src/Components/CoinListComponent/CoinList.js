@@ -25,7 +25,6 @@ function CoinList () {
     // Case for Currency type change, to avoid duplicates
     useEffect(() => {
         getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
-            console.log(currencyType.currency)
             setCoins([])
             setCoins([...res])
         }).catch((err) => {

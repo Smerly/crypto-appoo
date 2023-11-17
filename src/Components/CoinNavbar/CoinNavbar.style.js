@@ -8,7 +8,7 @@ export const CoinNavbarWrapper = tw.div`
     flex-row
     items-center
     bg-primary
-    w-2/5
+
     h-10
     p-5
 `

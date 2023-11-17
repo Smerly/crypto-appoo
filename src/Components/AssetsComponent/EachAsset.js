@@ -10,22 +10,36 @@ import CoinBar from "./CoinBar"
 
 function EachAsset(props) {
     const [currentCoin, setCurrentCoin] = useState('')
+    const [historyCoin, setHistoryCoin] = useState('')
 
-    const currencyType = useSelector((state) => state.persist.currency)
+    const historyCoinMarket = handleAwaitPrim(historyCoin, 'market_data')
+    const historyCoinPrice = handleAwaitPrim(historyCoinMarket, 'current_price')
+
+    const currencyType = useSelector((state) => state.persist.currency.currency )
     
-    const { asset, allCoins } = props
-    const { id, name, image, priceOfEach, amountInCurrency, amountOfCoin, datePurchased } = asset
+    const { reduxAsset, allCoins, allHistoryCoins } = props
+    const { id, amountOfCoin, datePurchased } = reduxAsset
+    const amountInCurrency = (amountOfCoin * handleAwaitPrim(historyCoinPrice, `${currencyType}`)).toFixed(2)
+    const priceOfEach = handleAwaitPrim(historyCoinPrice, `${currencyType}`)
+    const image = handleAwaitPrim(currentCoin, 'image')
 
     useEffect(() => {
+        // Find the one current coin that exists since id is unique, and add it as a state
         setCurrentCoin(allCoins.filter((each) => each.id === id)[0])
     }, [allCoins])
+    
+
+    useEffect(() => {
+        // Find the one history coin that exists since id is unique, and add it as a state
+        setHistoryCoin(allHistoryCoins.filter((each) => each.id === id)[0])
+    }, [allHistoryCoins])
 
 
     return (
         <EachAssetWrapper>
             <CoinLabelBox>
                 <AssetImage src={image}/>
-                <AssetName>{handleAwaitPrim(asset,'name')}</AssetName>
+                <AssetName>{handleAwaitPrim(currentCoin,'name')}</AssetName>
             </CoinLabelBox>
 
             <AssetInfoBoxes>
@@ -72,9 +86,9 @@ function EachAsset(props) {
                             Amount Value: ${formatNumber(String(amountInCurrency))}
                         </InfoText>
                         <InfoText>  
-                            Price Difference: 
+                            Total Price Difference: 
                             <p className={`ml-1 ${returnGreenOrRedCompare(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}`}>
-                                ${handleAwaitPrim(currentCoin, 'current_price') - priceOfEach}
+                                ${(formatNumber(roundToHundredth(handleAwaitPrim(currentCoin, 'current_price') - priceOfEach) * roundToHundredth(amountOfCoin)))}
                             </p> 
                             {returnArrow(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}
                         </InfoText>

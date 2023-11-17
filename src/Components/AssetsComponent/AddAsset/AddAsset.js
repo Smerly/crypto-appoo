@@ -63,10 +63,6 @@ function AddAsset() {
     const handleSubmit = () => {
         dispatch(addCurrency({    
             id: chosenCoin[1],
-            name: chosenCoin[0],
-            image: selectedCoinImage,
-            amountInCurrency: currencyAsNumber,
-            priceOfEach: coinPrices.filter((each) => each[1] === chosenCoin[1])[0][0],
             amountOfCoin: currencyAsNumber / coinPrices.filter((each) => each[1] === chosenCoin[1])[0][0],
             datePurchased: date,
         }))
