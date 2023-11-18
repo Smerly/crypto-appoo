@@ -2,10 +2,14 @@ import styled, { keyframes } from 'styled-components';
 import tw from 'tailwind-styled-components';
 import toggleIcon from 'images/toggler-icon.png'
 
+export const NavbarWrapper = styled.div`
+background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(125,60,85,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%);
+`
+
 export const NavbarBox = styled.div`
     width: 100vw;
     height: 5rem;
-    background-color: #191B1F;
+    background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(125,60,85,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -18,8 +22,8 @@ export const NavbarRespBig = styled.div`
     padding-left: 100px;
     padding-right: 20px;
     width: 100%;
-    background-color: #191B1F;
-`
+    background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(170,69,108,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%),
+    linear-gradient(to right,black,white);`
 
 export const NavbarRespSmall = styled.div`
     display: flex;
@@ -53,8 +57,12 @@ export const NavbarHidden = tw.div`
 `
 
 export const DropdownButton = tw.button`
+    text-white
     rounded-lg 
-    bg-gray 
+    border-2
+    border-gray-700
+    border-solid
+    bg-secondary
     w-32 
     m-20 
     mt-1 
@@ -67,7 +75,19 @@ export const DropdownMenu = styled.div`
 
 `
 
+export const DropdownList = styled.ul`
+
+`
+
 export const DarkMode = styled.button`
+`
+
+export const SearchBarWrapper = tw.form`
+    bg-secondary
+    rounded-xl
+    border-2
+    border-gray-700
+    border-solid
 `
 
 export const SearchIconWrapper = tw.div`
@@ -87,9 +107,15 @@ export const SearchInput = tw.input`
     pl-10 
     text-md 
     text-white 
-    bg-lighterGray
+    bg-secondary
 `
 export const EachCurrencyButton = tw.button`
     flex
     flex-row
+`
+
+export const NavLinks = tw.div`
+    rounded-2xl
+    bg-secondary
+    p-5
 `

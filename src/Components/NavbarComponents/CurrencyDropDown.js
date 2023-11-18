@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from 'redux/currencySlice'
-import { DropdownMenu, DropdownButton, EachCurrencyButton } from 'Components/NavbarComponents/Navbar.style'
+import { DropdownMenu, DropdownButton, EachCurrencyButton, DropdownList } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
 
 function CurrencyDropDown() {
@@ -17,14 +17,15 @@ function CurrencyDropDown() {
     const show = () => setHidden(!hidden)
     return (
         <div>
-<DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType.currency}</DropdownButton>            {/* The DropdownMenu's initial state is hidden */}
+            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" onClick={show}>{currencyType.currency}</DropdownButton>
+            {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
-                <ul>
-                    {currencies.map((each) => <EachCurrencyButton value={each} onClick={(e) => {
+                <DropdownList>
+                    {currencies.map((each) => <EachCurrencyButton key={each} value={each} onClick={(e) => {
                             show()
                             dispatch(changeCurrency({currency: String(each)}))
                     }}>{each}</EachCurrencyButton>)}
-                </ul>
+                </DropdownList>
             </DropdownMenu>
         </div>
     )
