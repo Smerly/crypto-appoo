@@ -48,7 +48,6 @@ function AddAsset() {
     }
     useEffect(() => {
         getAllCoinsWithImagesNoPage(currencyType.currency).then((res) => {
-            console.log(res)
             setCoinNames(res.map((each) => [each.name, each.id]))
             setCoinImages(res.map((each) => [each.image, each.id]))
             setCoinPrices(res.map((each) => [each.current_price, each.id]))
@@ -64,7 +63,7 @@ function AddAsset() {
         dispatch(addCurrency({    
             id: chosenCoin[1],
             amountOfCoin: currencyAsNumber / coinPrices.filter((each) => each[1] === chosenCoin[1])[0][0],
-            datePurchased: date,
+            datePurchased: String(date),
         }))
         setShow(false)
         setChosenCoin('')

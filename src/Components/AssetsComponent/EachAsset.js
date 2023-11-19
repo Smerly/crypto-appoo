@@ -21,6 +21,17 @@ function EachAsset(props) {
     const { id, amountOfCoin, datePurchased } = reduxAsset
     const amountInCurrency = (amountOfCoin * handleAwaitPrim(historyCoinPrice, `${currencyType}`)).toFixed(2)
     const priceOfEach = handleAwaitPrim(historyCoinPrice, `${currencyType}`)
+    const greenOrRed = returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)
+    const currentChange24h = roundToHundredth(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'))
+    const arrow = returnArrow(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'), 0)
+
+    const currentPrice = formatNumber(String(handleAwaitPrim(currentCoin, 'current_price')))
+    const currentTotalVolume = handleAwaitPrim(currentCoin, 'total_volume')
+    const currentMarketCap = handleAwaitPrim(currentCoin, 'market_cap')
+    const currentCirculatingSupply = handleAwaitPrim(currentCoin, 'circulating_supply')
+    const currentTotalSupply = handleAwaitPrim(currentCoin, 'total_supply')
+
+    // priceOfEach, currentCoin
     const image = handleAwaitPrim(currentCoin, 'image')
 
     useEffect(() => {
@@ -52,22 +63,23 @@ function EachAsset(props) {
                     </AssetInfoBoxLabel>
                     <MarketPriceBox>
                         <InfoText>
-                            Price: ${formatNumber(String(handleAwaitPrim(currentCoin, 'current_price')))}
+                            Price: ${currentPrice}
+                            
                         </InfoText>
                         <InfoText>
                             Change 24h:
-                            <p className={`ml-1 ${returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)}`}>
-                                {handleAwaitPrim(currentCoin, 'price_change_percentage_24h')}
+                            <p className={`ml-1 ${greenOrRed}`}>
+                                {currentChange24h}
                             </p>
-                            {returnArrow(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'), 0)}
+                            {arrow}
                         </InfoText>
                         <InfoText>
                             Market Cap vs Volume: 
-                            <CoinBar fraction={handleAwaitPrim(currentCoin, 'total_volume')} total={handleAwaitPrim(currentCoin, 'market_cap')}/>
+                            <CoinBar fraction={currentTotalVolume} total={currentMarketCap}/>
                         </InfoText>
                         <InfoText>
                             Circulating vs Max:
-                            <CoinBar fraction={handleAwaitPrim(currentCoin, 'circulating_supply')} total={handleAwaitPrim(currentCoin, 'total_supply')}/>
+                            <CoinBar fraction={currentCirculatingSupply} total={currentTotalSupply}/>
                         </InfoText>
                     </MarketPriceBox>
                 </MarketPriceContainer>
@@ -88,7 +100,10 @@ function EachAsset(props) {
                         <InfoText>  
                             Total Price Difference: 
                             <p className={`ml-1 ${returnGreenOrRedCompare(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}`}>
-                                ${(formatNumber(roundToHundredth(handleAwaitPrim(currentCoin, 'current_price') - priceOfEach) * roundToHundredth(amountOfCoin)))}
+                                ${(formatNumber(roundToHundredth(handleAwaitPrim(currentCoin, 'current_price') - priceOfEach * roundToHundredth(amountOfCoin))))}
+                                {handleAwaitPrim(currentCoin, 'current_price')} 
+                                {priceOfEach}
+                                {roundToHundredth(amountOfCoin)}
                             </p> 
                             {returnArrow(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}
                         </InfoText>
