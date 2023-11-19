@@ -2,7 +2,7 @@ import { AssetsWrapper } from "./Assets.style"
 import { useSelector } from 'react-redux'
 import EachAsset from "./EachAsset"
 import { useEffect, useState } from "react"
-import { getAllCoinsWithImages, getHistoricalCoin } from "helpers/getCoin"
+import { getAllCoinsWithImages, getAllCoinsWithImagesNoPage, getHistoricalCoin } from "helpers/getCoin"
 import { formatDateDash } from "utils/formatDate"
 
 
@@ -13,24 +13,25 @@ function Assets() {
 
     const currencyType = useSelector((state) => state.persist.currency)
     const purchasedCurrencies = useSelector((state) => state.persist.portfolio.currencies)
+
     useEffect(() => {
         setBoughtCurrencyIds(purchasedCurrencies.map((each) => each.id))    
     }, [purchasedCurrencies])
 
     useEffect(() => {
-        // Promise.all([
-        //     allCoinsWithImages
-        // ])
         // Get only the coins that we have purchased
         async function getAllCoinsFiltered() {
+            // Call for all coins, then filter just the ones we need, setstate to allcoins
             try {
-                const allCoinsWithImages = await getAllCoinsWithImages(currencyType.currency)
-                const filteredCoinsWithImages = allCoinsWithImages
-                // .filter((each) => boughtCurrencyIds.includes(each.id))
+                const allCoinsWithImages = await getAllCoinsWithImagesNoPage(currencyType.currency)
+                const filteredCoinsWithImages = allCoinsWithImages.filter((each) => {
+                    return boughtCurrencyIds.includes(each.id)
+                })
                 setAllCoins(filteredCoinsWithImages)
             } catch (err) {
                 console.log(err)
             }
+            // For every coin in purchased currencies, get the historical data for it.
             purchasedCurrencies.map((each) => getHistoricalCoin(each.id, formatDateDash(each.datePurchased), currencyType.currency).then((res) => {
                 if (!allHistoryCoins.includes(res)) {
                     return setAllHistoryCoins([...allHistoryCoins, res])
@@ -41,19 +42,7 @@ function Assets() {
 
         }
         getAllCoinsFiltered()
-        // getAllCoinsWithImages(currencyType.currency).then((res) => res ? setAllCoins(res) : setAllCoins([]))
-        // setAllCoins(allCoins.filter((each) => boughtCurrencyIds.includes(each.id)))
-        
-        // Get coins history that we have purchased
-        // console.log(purchasedCurrencies)
-        // console.log(`allcoins:${allCoins}`)
-
-        // console.log(allCoins)
-        // console.log(`allhistorycoins${allHistoryCoins}`)
-        // console.log(allHistoryCoins)
-        console.log(allCoins)
-        console.log(allHistoryCoins)
-    }, [currencyType.currency])
+    }, [currencyType.currency, boughtCurrencyIds])
 
     return (
         <AssetsWrapper>

@@ -31,7 +31,6 @@ function EachAsset(props) {
     const currentCirculatingSupply = handleAwaitPrim(currentCoin, 'circulating_supply')
     const currentTotalSupply = handleAwaitPrim(currentCoin, 'total_supply')
 
-    // priceOfEach, currentCoin
     const image = handleAwaitPrim(currentCoin, 'image')
 
     useEffect(() => {
