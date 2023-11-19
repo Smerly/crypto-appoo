@@ -31,17 +31,24 @@ function Assets() {
             } catch (err) {
                 console.log(err)
             }
-            // For every coin in purchased currencies, get the historical data for it.
-            purchasedCurrencies.map((each) => getHistoricalCoin(each.id, formatDateDash(each.datePurchased), currencyType.currency).then((res) => {
-                if (!allHistoryCoins.includes(res)) {
-                    return setAllHistoryCoins([...allHistoryCoins, res])
-                }
-            }).catch((err) =>  {
-                console.log(err)
-            }))
 
         }
+
+        async function setAllHistoricalCoins(eachId, eachDatePurchased) {
+            try {
+                const eachHistoricalCoin = await getHistoricalCoin(eachId, eachDatePurchased, currencyType.currency)
+                if (!allHistoryCoins.includes(eachHistoricalCoin)) {
+                    return setAllHistoryCoins([...allHistoryCoins, eachHistoricalCoin])
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        // For every coin in purchased currencies, get the historical data for it.
+        purchasedCurrencies.forEach((each) => setAllHistoricalCoins(each.id, formatDateDash(each.datePurchased)))
         getAllCoinsFiltered()
+        
     }, [currencyType.currency, boughtCurrencyIds])
 
     return (
