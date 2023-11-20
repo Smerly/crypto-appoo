@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, CoinImage } from "../Assets.style"
+import { AddAssetsButton, AssetsModal, AssetModalBox, ModalLabel, AssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, CoinImage } from "../Assets.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
 import { getAllCoinsWithImagesNoPage } from "helpers/getCoin"
 import { addCurrency } from "redux/portfolioSlice"
@@ -80,11 +80,11 @@ function AddAsset() {
                 Add Asset
             </AddAssetsButton>
 
-            <AddAssetModalOverlay show={show} onClick={handleClose} />
+            <AssetModalOverlay show={show} onClick={handleClose} />
 
             
-            <AddAssetsModal show={show}>
-                <AddAssetModalBox>
+            <AssetsModal show={show}>
+                <AssetModalBox>
                     <ModalLabel>Select Coin</ModalLabel>
                     <CoinSelectionBox>
 
@@ -106,8 +106,8 @@ function AddAsset() {
                         </SubmitButton>
                     </FormButtons>
                     
-                </AddAssetModalBox>
-            </AddAssetsModal>
+                </AssetModalBox>
+            </AssetsModal>
         </div>
     )
 }

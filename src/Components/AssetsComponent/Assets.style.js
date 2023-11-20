@@ -133,7 +133,7 @@ const appear = keyframes`
     }
 `
 
-export const AddAssetsModal = styled.div`
+export const AssetsModal = styled.div`
     z-index: 2;
     position: fixed;
     justify-content: center;
@@ -149,7 +149,7 @@ export const AddAssetsModal = styled.div`
     opacity: ${(props) => props.show ? '1' : '0'};
 `
 
-export const AddAssetModalBox = tw.div`
+export const AssetModalBox = tw.div`
     fixed
     flex
     flex-col
@@ -166,7 +166,7 @@ export const ModalLabel = tw.div`
 
 `
 
-export const AddAssetModalOverlay = styled.div`
+export const AssetModalOverlay = styled.div`
     background-color: black;
     width: 100vw;
     height: 100vh;

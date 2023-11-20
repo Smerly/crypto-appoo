@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, EditAssetButton, CoinImage, CoinNameSelectionWrapper, CoinNameInput, CoinNameLabel  } from "../Assets.style"
+import { AssetsModal, AssetModalBox, ModalLabel, AssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, EditAssetButton, CoinImage, CoinNameSelectionWrapper, CoinNameInput, CoinNameLabel  } from "../Assets.style"
 import EditAmount from "./EditAmount"
 import EditDate from "./EditDate"
 import { updateCurrency } from "redux/portfolioSlice"
@@ -17,13 +17,14 @@ function EditAsset(props) {
 
     // Vars
 
-    const name = handleAwaitPrim(currentCoin, 'name')
+    const coinName = handleAwaitPrim(currentCoin, 'name')
     const image = handleAwaitPrim(currentCoin, 'image')
     const calculatedCurrencyAmount = `$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`
+    const datePurchased = new Date(reduxAsset.datePurchased)
 
     const [show, setShow] = useState(false)
     const [currencyAmount, setCurrencyAmount] = useState(calculatedCurrencyAmount)
-    const [date, setDate] = useState(new Date(reduxAsset.datePurchased))
+    const [date, setDate] = useState(datePurchased)
 
     useEffect(() => {
         setCurrencyAmount(calculatedCurrencyAmount)
@@ -49,22 +50,22 @@ function EditAsset(props) {
                 Edit
             </EditAssetButton>
 
-            <AddAssetModalOverlay show={show} onClick={handleClose} />
+            <AssetModalOverlay show={show} onClick={handleClose} />
 
             
-            <AddAssetsModal show={show}>
-                <AddAssetModalBox>
+            <AssetsModal show={show}>
+                <AssetModalBox>
                     <ModalLabel>Select Coin</ModalLabel>
                     <CoinSelectionBox>
 
                         <TempCoinIconBox>
                             <CoinImage src={image} />
-                            {name}
+                            {coinName}
                         </TempCoinIconBox>
 
                         <SelectionFields>
                             <CoinNameSelectionWrapper>
-                                <CoinNameLabel type="text" value={name} placeholder='Coin'/>
+                                <CoinNameLabel type="text" value={coinName} placeholder='Coin'/>
                             </CoinNameSelectionWrapper>
 
                             <EditAmount currentCoin={currentCoin} currencyAmount={currencyAmount} setCurrencyAmount={setCurrencyAmount} />
@@ -83,8 +84,8 @@ function EditAsset(props) {
                         </SubmitButton>
                     </FormButtons>
                     
-                </AddAssetModalBox>
-            </AddAssetsModal>
+                </AssetModalBox>
+            </AssetsModal>
         </div>
     )
 }
