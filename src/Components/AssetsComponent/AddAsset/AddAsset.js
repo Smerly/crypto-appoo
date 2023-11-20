@@ -55,6 +55,7 @@ function AddAsset() {
     }, [])
 
     const currencyAsNumber = Number(currency.slice(1).replace(/,/g, ''))
+    const coinName = chosenCoin[0]
 
 
     const handleSubmit = () => {
@@ -69,13 +70,17 @@ function AddAsset() {
         setCurrency('$0')
         setDate(new Date())
     }
+
+    const handleClose = () => setShow(false)
+    const toggleModal = () => setShow(!show)
+    
     return (
         <div>
-            <AddAssetsButton onClick={() => setShow(!show)}>
+            <AddAssetsButton onClick={toggleModal}>
                 Add Asset
             </AddAssetsButton>
 
-            <AddAssetModalOverlay show={show} onClick={() => setShow(false)} />
+            <AddAssetModalOverlay show={show} onClick={handleClose} />
 
             
             <AddAssetsModal show={show}>
@@ -85,7 +90,7 @@ function AddAsset() {
 
                         <TempCoinIconBox>
                             <CoinImage src={selectedCoinImage} />
-                            {chosenCoin[0]}
+                            {coinName}
                         </TempCoinIconBox>
                         
                         <SelectionFieldsComp selectCoinProps={selectCoinProps} />
@@ -93,7 +98,7 @@ function AddAsset() {
                     </CoinSelectionBox>
                     
                     <FormButtons>
-                        <CloseButton onClick={() => setShow(false)}>
+                        <CloseButton onClick={handleClose}>
                             Close
                         </CloseButton>
                         <SubmitButton onClick={handleSubmit}>

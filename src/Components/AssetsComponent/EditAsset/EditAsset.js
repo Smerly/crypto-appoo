@@ -20,17 +20,11 @@ function EditAsset(props) {
     const name = handleAwaitPrim(currentCoin, 'name')
     const image = handleAwaitPrim(currentCoin, 'image')
     const calculatedCurrencyAmount = `$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`
+    const currencyAsNumber = Number(currencyAmount.slice(1).replace(/,/g, ''))
 
     const [show, setShow] = useState(false)
-
-    // For CurrencySelection
     const [currencyAmount, setCurrencyAmount] = useState(calculatedCurrencyAmount)
-
-    // For DateTimeSelection
-
     const [date, setDate] = useState(new Date(reduxAsset.datePurchased))
-
-    const currencyAsNumber = Number(currencyAmount.slice(1).replace(/,/g, ''))
 
     useEffect(() => {
         setCurrencyAmount(calculatedCurrencyAmount)
@@ -45,13 +39,17 @@ function EditAsset(props) {
         }))
         setShow(false)
     }
+
+    const handleClose = () => setShow(false)
+    const toggleModal = () => setShow(!show)
+
     return (
         <div>
-            <EditAssetButton onClick={() => setShow(!show)}>
+            <EditAssetButton onClick={toggleModal}>
                 Edit
             </EditAssetButton>
 
-            <AddAssetModalOverlay show={show} onClick={() => setShow(false)} />
+            <AddAssetModalOverlay show={show} onClick={handleClose} />
 
             
             <AddAssetsModal show={show}>
@@ -77,7 +75,7 @@ function EditAsset(props) {
                     </CoinSelectionBox>
                     
                     <FormButtons>
-                        <CloseButton onClick={() => setShow(false)}>
+                        <CloseButton onClick={handleClose}>
                             Close
                         </CloseButton>
                         <SubmitButton onClick={handleSubmit}>
