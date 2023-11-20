@@ -10,17 +10,21 @@ import { handleAwaitPrim } from "utils/handleAwait"
 import { roundToHundredth } from "utils/roundToHundredth"
 
 function EditAsset(props) {
+    const dispatch = useDispatch()
     const currencyType = useSelector((state) => state.persist.currency)
 
     const { currentCoin, historyCoinPrice, reduxAsset } = props
 
-    const dispatch = useDispatch()
+    // Vars
+
+    const name = handleAwaitPrim(currentCoin, 'name')
+    const image = handleAwaitPrim(currentCoin, 'image')
+    const calculatedCurrencyAmount = `$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`
 
     const [show, setShow] = useState(false)
 
     // For CurrencySelection
-
-    const [currencyAmount, setCurrencyAmount] = useState(`$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`)
+    const [currencyAmount, setCurrencyAmount] = useState(calculatedCurrencyAmount)
 
     // For DateTimeSelection
 
@@ -29,13 +33,14 @@ function EditAsset(props) {
     const currencyAsNumber = Number(currencyAmount.slice(1).replace(/,/g, ''))
 
     useEffect(() => {
-        setCurrencyAmount(`$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`)
+        setCurrencyAmount(calculatedCurrencyAmount)
     }, [historyCoinPrice, reduxAsset])
 
     const handleSubmit = () => {
+        const amountOfCoin = currencyAsNumber / handleAwaitPrim(historyCoinPrice, 'usd')
         dispatch(updateCurrency({    
             id: reduxAsset.id,
-            amountOfCoin: currencyAsNumber / handleAwaitPrim(historyCoinPrice, 'usd'),
+            amountOfCoin: amountOfCoin,
             datePurchased: String(date),
         }))
         setShow(false)
@@ -55,13 +60,13 @@ function EditAsset(props) {
                     <CoinSelectionBox>
 
                         <TempCoinIconBox>
-                            <CoinImage src={handleAwaitPrim(currentCoin, 'image')} />
-                            {handleAwaitPrim(currentCoin, 'name')}
+                            <CoinImage src={image} />
+                            {name}
                         </TempCoinIconBox>
 
                         <SelectionFields>
                             <CoinNameSelectionWrapper>
-                                <CoinNameLabel type="text" value={handleAwaitPrim(currentCoin, 'name')} placeholder='Coin'/>
+                                <CoinNameLabel type="text" value={name} placeholder='Coin'/>
                             </CoinNameSelectionWrapper>
 
                             <EditAmount currentCoin={currentCoin} currencyAmount={currencyAmount} setCurrencyAmount={setCurrencyAmount} />

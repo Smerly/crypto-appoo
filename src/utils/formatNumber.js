@@ -14,3 +14,7 @@ export function formatNumber(n) {
     }
     return `${formattedNum.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${n}`
 }
+
+export function formatCurrencyAmount(n) {
+    return `$${formatNumber(n.slice(1))}`
+}

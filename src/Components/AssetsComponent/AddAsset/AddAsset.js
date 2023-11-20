@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
-import { Dialog, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton } from "../Assets.style"
-import { CoinImage } from "../Assets.style"
+import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, CoinImage } from "../Assets.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
-import { getAllCoinsWithImages, getAllCoinsWithImagesNoPage } from "helpers/getCoin"
+import { getAllCoinsWithImagesNoPage } from "helpers/getCoin"
 import { addCurrency } from "redux/portfolioSlice"
 
 function AddAsset() {

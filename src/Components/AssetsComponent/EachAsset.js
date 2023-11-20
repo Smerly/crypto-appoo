@@ -23,7 +23,7 @@ function EachAsset(props) {
     
     const { reduxAsset, allCoins, allHistoryCoins } = props
     const { id, amountOfCoin, datePurchased } = reduxAsset
-    console.log(reduxAsset)
+
     const amountInCurrency = (amountOfCoin * handleAwaitPrim(historyCoinPrice, `${currencyType}`)).toFixed(2)
     const priceOfEach = handleAwaitPrim(historyCoinPrice, `${currencyType}`)
     const greenOrRed = returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)
