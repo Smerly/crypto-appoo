@@ -4,29 +4,52 @@ import { formatNumber } from "utils/formatNumber"
 import { EachAssetWrapper, AssetImage, CoinLabelBox, AssetName, AssetInfoBoxes, AssetInfoBoxLabel, MarketPriceContainer, YourCoinContainer, MarketPriceBox, YourCoinBox, InfoText } from "./Assets.style"
 import { handleAwaitPrim } from "utils/handleAwait"
 import { roundToHundredth } from "utils/roundToHundredth"
+import { formatDateSlash } from 'utils/formatDate'
 import { returnArrow, returnGreenOrRedCompare, returnGreenOrRedCondition } from "utils/returnGreenOrRed"
 import CoinBar from "./CoinBar"
 
 function EachAsset(props) {
     const [currentCoin, setCurrentCoin] = useState('')
+    const [historyCoin, setHistoryCoin] = useState('')
 
-    const currencyType = useSelector((state) => state.persist.currency)
+    const historyCoinMarket = handleAwaitPrim(historyCoin, 'market_data')
+    const historyCoinPrice = handleAwaitPrim(historyCoinMarket, 'current_price')
+
+    const currencyType = useSelector((state) => state.persist.currency.currency )
     
-    const { asset, allCoins } = props
-    const { id, name, image, priceOfEach, amountInCurrency, amountOfCoin, datePurchased } = asset
+    const { reduxAsset, allCoins, allHistoryCoins } = props
+    const { id, amountOfCoin, datePurchased } = reduxAsset
+    const amountInCurrency = (amountOfCoin * handleAwaitPrim(historyCoinPrice, `${currencyType}`)).toFixed(2)
+    const priceOfEach = handleAwaitPrim(historyCoinPrice, `${currencyType}`)
+    const greenOrRed = returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)
+    const currentChange24h = roundToHundredth(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'))
+    const arrow = returnArrow(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'), 0)
 
-    const dateFormatted = `${new Date(datePurchased).getMonth()+1}/${new Date(datePurchased).getDate()}/${new Date(datePurchased).getFullYear()}`
+    const currentPrice = formatNumber(String(handleAwaitPrim(currentCoin, 'current_price')))
+    const currentTotalVolume = handleAwaitPrim(currentCoin, 'total_volume')
+    const currentMarketCap = handleAwaitPrim(currentCoin, 'market_cap')
+    const currentCirculatingSupply = handleAwaitPrim(currentCoin, 'circulating_supply')
+    const currentTotalSupply = handleAwaitPrim(currentCoin, 'total_supply')
+
+    const image = handleAwaitPrim(currentCoin, 'image')
 
     useEffect(() => {
+        // Find the one current coin that exists since id is unique, and add it as a state
         setCurrentCoin(allCoins.filter((each) => each.id === id)[0])
     }, [allCoins])
+    
+
+    useEffect(() => {
+        // Find the one history coin that exists since id is unique, and add it as a state
+        setHistoryCoin(allHistoryCoins.filter((each) => each.id === id)[0])
+    }, [allHistoryCoins])
 
 
     return (
         <EachAssetWrapper>
             <CoinLabelBox>
                 <AssetImage src={image}/>
-                <AssetName>{handleAwaitPrim(asset,'name')}</AssetName>
+                <AssetName>{handleAwaitPrim(currentCoin,'name')}</AssetName>
             </CoinLabelBox>
 
             <AssetInfoBoxes>
@@ -39,22 +62,23 @@ function EachAsset(props) {
                     </AssetInfoBoxLabel>
                     <MarketPriceBox>
                         <InfoText>
-                            Price: ${formatNumber(String(handleAwaitPrim(currentCoin, 'current_price')))}
+                            Price: ${currentPrice}
+                            
                         </InfoText>
                         <InfoText>
                             Change 24h:
-                            <p className={`ml-1 ${returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)}`}>
-                                {handleAwaitPrim(currentCoin, 'price_change_percentage_24h')}
+                            <p className={`ml-1 ${greenOrRed}`}>
+                                {currentChange24h}
                             </p>
-                            {returnArrow(handleAwaitPrim(currentCoin, 'price_change_percentage_24h'), 0)}
+                            {arrow}
                         </InfoText>
                         <InfoText>
                             Market Cap vs Volume: 
-                            <CoinBar fraction={handleAwaitPrim(currentCoin, 'total_volume')} total={handleAwaitPrim(currentCoin, 'market_cap')}/>
+                            <CoinBar fraction={currentTotalVolume} total={currentMarketCap}/>
                         </InfoText>
                         <InfoText>
                             Circulating vs Max:
-                            <CoinBar fraction={handleAwaitPrim(currentCoin, 'circulating_supply')} total={handleAwaitPrim(currentCoin, 'total_supply')}/>
+                            <CoinBar fraction={currentCirculatingSupply} total={currentTotalSupply}/>
                         </InfoText>
                     </MarketPriceBox>
                 </MarketPriceContainer>
@@ -73,14 +97,17 @@ function EachAsset(props) {
                             Amount Value: ${formatNumber(String(amountInCurrency))}
                         </InfoText>
                         <InfoText>  
-                            Price Difference: 
+                            Total Price Difference: 
                             <p className={`ml-1 ${returnGreenOrRedCompare(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}`}>
-                                ${handleAwaitPrim(currentCoin, 'current_price') - priceOfEach}
+                                ${(formatNumber(roundToHundredth(handleAwaitPrim(currentCoin, 'current_price') - priceOfEach * roundToHundredth(amountOfCoin))))}
+                                {handleAwaitPrim(currentCoin, 'current_price')} 
+                                {priceOfEach}
+                                {roundToHundredth(amountOfCoin)}
                             </p> 
                             {returnArrow(handleAwaitPrim(currentCoin, 'current_price'), priceOfEach)}
                         </InfoText>
                         <InfoText>
-                            Date Purchased: {dateFormatted}
+                            Date Purchased: {formatDateSlash(datePurchased)}
                         </InfoText>
                     </YourCoinBox>
                 </YourCoinContainer>

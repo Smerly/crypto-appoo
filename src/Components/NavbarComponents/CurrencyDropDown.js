@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from 'redux/currencySlice'
 import { DropdownMenu, DropdownButton, EachCurrencyButton, DropdownList } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
+import { handleAwaitPrim } from 'utils/handleAwait'
 
 function CurrencyDropDown() {
+    const [currencyTypeState , setCurrencyTypeState] = useState('')
     const dispatch = useDispatch()
-    const currencyType = useSelector((state) => state.persist.currency)
+    const currencyType = useSelector((state) => state.persist.currency.currency)
 
     const [hidden, setHidden] = useState(true)
     const [currencies, setCurrencies] = useState([])
@@ -17,13 +19,14 @@ function CurrencyDropDown() {
     const show = () => setHidden(!hidden)
     return (
         <div>
-            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" onClick={show}>{currencyType.currency}</DropdownButton>
+            <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>{currencyType}</DropdownButton>            
+
             {/* The DropdownMenu's initial state is hidden */}
             <DropdownMenu id='dropdown' className={`dropdown h-52 w-32 ml-20 p-3 ${hidden ? '' : 'unhide'}`}>
                 <DropdownList>
                     {currencies.map((each) => <EachCurrencyButton key={each} value={each} onClick={(e) => {
                             show()
-                            dispatch(changeCurrency({currency: String(each)}))
+                            dispatch(changeCurrency(String(each)))
                     }}>{each}</EachCurrencyButton>)}
                 </DropdownList>
             </DropdownMenu>
