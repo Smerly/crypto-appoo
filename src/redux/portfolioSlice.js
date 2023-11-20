@@ -3,10 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 // Notes:
 
 // id
-// name
-// image
-// amountInCurrency
-// priceOfEach
 // amountOfCoins
 // Date Purchased
 
@@ -24,7 +20,7 @@ export const portfolioSlice = createSlice({
         updateCurrency: (currentState, action) => {
             const currencyId = action.payload.id
             let index = 0;
-            currentState.forEach((each) => {
+            currentState.currencies.forEach((each) => {
                 if (each.id === currencyId) {
                     currentState.currencies[index] = action.payload
                 }
@@ -32,9 +28,9 @@ export const portfolioSlice = createSlice({
             index += 1
         },
         sellCurrency: (currentState, action) => {
-            const currencyId = action.payload.id
+            const currencyId = action.payload
             let index = 0
-            currentState.forEach((each) => {
+            currentState.currencies.forEach((each) => {
                 if (each.id === currencyId) {
                     currentState.currencies.splice(index, 1)
                 }
@@ -44,6 +40,6 @@ export const portfolioSlice = createSlice({
     }
 })
 
-export const { addCurrency, sellCurrency } = portfolioSlice.actions
+export const { addCurrency, updateCurrency, sellCurrency } = portfolioSlice.actions
 
 export default portfolioSlice.reducer;

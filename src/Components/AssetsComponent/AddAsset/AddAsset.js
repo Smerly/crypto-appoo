@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
-import { Dialog, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddAssetsButton, AddAssetsModal, AddAssetModalBox, ModalLabel, AddAssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton } from "../Assets.style"
-import { CoinImage } from "../Assets.style"
+import { AddAssetsButton, AssetsModal, AssetModalBox, ModalLabel, AssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, CoinImage } from "../Assets.style"
 import SelectionFieldsComp from "./SelectionFieldsComp"
-import { getAllCoinsWithImages, getAllCoinsWithImagesNoPage } from "helpers/getCoin"
+import { getAllCoinsWithImagesNoPage } from "helpers/getCoin"
 import { addCurrency } from "redux/portfolioSlice"
 
 function AddAsset() {
@@ -57,6 +55,7 @@ function AddAsset() {
     }, [])
 
     const currencyAsNumber = Number(currency.slice(1).replace(/,/g, ''))
+    const coinName = chosenCoin[0]
 
 
     const handleSubmit = () => {
@@ -71,23 +70,27 @@ function AddAsset() {
         setCurrency('$0')
         setDate(new Date())
     }
+
+    const handleClose = () => setShow(false)
+    const toggleModal = () => setShow(!show)
+    
     return (
         <div>
-            <AddAssetsButton onClick={() => setShow(!show)}>
+            <AddAssetsButton onClick={toggleModal}>
                 Add Asset
             </AddAssetsButton>
 
-            <AddAssetModalOverlay show={show} onClick={() => setShow(false)} />
+            <AssetModalOverlay show={show} onClick={handleClose} />
 
             
-            <AddAssetsModal show={show}>
-                <AddAssetModalBox>
+            <AssetsModal show={show}>
+                <AssetModalBox>
                     <ModalLabel>Select Coin</ModalLabel>
                     <CoinSelectionBox>
 
                         <TempCoinIconBox>
                             <CoinImage src={selectedCoinImage} />
-                            {chosenCoin[0]}
+                            {coinName}
                         </TempCoinIconBox>
                         
                         <SelectionFieldsComp selectCoinProps={selectCoinProps} />
@@ -95,7 +98,7 @@ function AddAsset() {
                     </CoinSelectionBox>
                     
                     <FormButtons>
-                        <CloseButton onClick={() => setShow(false)}>
+                        <CloseButton onClick={handleClose}>
                             Close
                         </CloseButton>
                         <SubmitButton onClick={handleSubmit}>
@@ -103,8 +106,8 @@ function AddAsset() {
                         </SubmitButton>
                     </FormButtons>
                     
-                </AddAssetModalBox>
-            </AddAssetsModal>
+                </AssetModalBox>
+            </AssetsModal>
         </div>
     )
 }

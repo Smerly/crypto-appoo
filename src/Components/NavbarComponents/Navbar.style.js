@@ -116,6 +116,6 @@ export const EachCurrencyButton = tw.button`
 
 export const NavLinks = tw.div`
     rounded-2xl
-    bg-secondary
+    bg-secondaryTransparent
     p-5
 `

@@ -18,6 +18,7 @@ function Assets() {
         setBoughtCurrencyIds(purchasedCurrencies.map((each) => each.id))    
     }, [purchasedCurrencies])
 
+    console.log(purchasedCurrencies)
     useEffect(() => {
         // Get only the coins that we have purchased
         async function getAllCoinsFiltered() {
