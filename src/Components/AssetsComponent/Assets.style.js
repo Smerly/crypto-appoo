@@ -51,6 +51,8 @@ export const AssetInfoBoxes = tw.div`
     ml-10
 `
 export const AssetInfoBoxLabel = tw.h1`
+    flex
+    flex-row
     text-lg
     mr-auto
     ml-2
@@ -133,7 +135,9 @@ const appear = keyframes`
 
 export const AddAssetsModal = styled.div`
     z-index: 2;
-    position: absolute;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -146,6 +150,7 @@ export const AddAssetsModal = styled.div`
 `
 
 export const AddAssetModalBox = tw.div`
+    fixed
     flex
     flex-col
     items-center
@@ -165,7 +170,7 @@ export const AddAssetModalOverlay = styled.div`
     background-color: black;
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top:0%;
     left:0%;
     transition: 0.5s;
@@ -264,6 +269,18 @@ export const CoinNameInput = tw.input`
     h-10
 `
 
+export const CoinNameLabel = tw.input`
+    flex
+    flex-row
+    p-4
+    m-2
+    bg-primary
+    rounded-2xl
+    w-full
+    h-10
+    text-gray-500
+`
+
 export const SearchOutput = tw.div`
     absolute
     flex
@@ -323,4 +340,12 @@ export const CoinImage  = tw.img`
     w-8
     h-8
     mb-2
+`
+
+export const EditAssetButton = tw.button`
+    ml-3
+`
+
+export const DeleteAssetButton = tw.button`
+    ml-3
 `

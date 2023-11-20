@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { formatNumber } from "utils/formatNumber"
-import { EachAssetWrapper, AssetImage, CoinLabelBox, AssetName, AssetInfoBoxes, AssetInfoBoxLabel, MarketPriceContainer, YourCoinContainer, MarketPriceBox, YourCoinBox, InfoText } from "./Assets.style"
+import { EachAssetWrapper, AssetImage, CoinLabelBox, AssetName, AssetInfoBoxes, AssetInfoBoxLabel, MarketPriceContainer, YourCoinContainer, MarketPriceBox, YourCoinBox, InfoText, EditAssetButton, DeleteAssetButton } from "./Assets.style"
 import { handleAwaitPrim } from "utils/handleAwait"
 import { roundToHundredth } from "utils/roundToHundredth"
 import { formatDateSlash } from 'utils/formatDate'
 import { returnArrow, returnGreenOrRedCompare, returnGreenOrRedCondition } from "utils/returnGreenOrRed"
 import CoinBar from "./CoinBar"
+import { sellCurrency } from "redux/portfolioSlice"
+import EditAsset from "./EditAsset/EditAsset"
 
 function EachAsset(props) {
+    const dispatch = useDispatch()
+
     const [currentCoin, setCurrentCoin] = useState('')
     const [historyCoin, setHistoryCoin] = useState('')
 
@@ -19,6 +23,7 @@ function EachAsset(props) {
     
     const { reduxAsset, allCoins, allHistoryCoins } = props
     const { id, amountOfCoin, datePurchased } = reduxAsset
+    console.log(reduxAsset)
     const amountInCurrency = (amountOfCoin * handleAwaitPrim(historyCoinPrice, `${currencyType}`)).toFixed(2)
     const priceOfEach = handleAwaitPrim(historyCoinPrice, `${currencyType}`)
     const greenOrRed = returnGreenOrRedCondition(handleAwaitPrim(currentCoin, 'price_change_percentage_24h') > 0)
@@ -36,13 +41,17 @@ function EachAsset(props) {
     useEffect(() => {
         // Find the one current coin that exists since id is unique, and add it as a state
         setCurrentCoin(allCoins.filter((each) => each.id === id)[0])
-    }, [allCoins])
+    }, [allCoins, reduxAsset])
     
 
     useEffect(() => {
         // Find the one history coin that exists since id is unique, and add it as a state
         setHistoryCoin(allHistoryCoins.filter((each) => each.id === id)[0])
-    }, [allHistoryCoins])
+    }, [allHistoryCoins, reduxAsset])
+
+    const deleteAsset = () => {
+        dispatch(sellCurrency(handleAwaitPrim(currentCoin, 'id')))
+    }
 
 
     return (
@@ -59,6 +68,10 @@ function EachAsset(props) {
                 <MarketPriceContainer>
                     <AssetInfoBoxLabel>
                         Market Price
+                        <EditAsset currentCoin={currentCoin} reduxAsset={reduxAsset} historyCoinPrice={historyCoinPrice} />
+                        <DeleteAssetButton onClick={deleteAsset}>
+                            Delete
+                        </DeleteAssetButton>
                     </AssetInfoBoxLabel>
                     <MarketPriceBox>
                         <InfoText>
