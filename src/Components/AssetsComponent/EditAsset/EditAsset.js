@@ -20,7 +20,6 @@ function EditAsset(props) {
     const name = handleAwaitPrim(currentCoin, 'name')
     const image = handleAwaitPrim(currentCoin, 'image')
     const calculatedCurrencyAmount = `$${roundToHundredth(reduxAsset.amountOfCoin * handleAwaitPrim(historyCoinPrice, 'usd'))}`
-    const currencyAsNumber = Number(currencyAmount.slice(1).replace(/,/g, ''))
 
     const [show, setShow] = useState(false)
     const [currencyAmount, setCurrencyAmount] = useState(calculatedCurrencyAmount)
@@ -42,6 +41,7 @@ function EditAsset(props) {
 
     const handleClose = () => setShow(false)
     const toggleModal = () => setShow(!show)
+    const currencyAsNumber = Number(currencyAmount.slice(1).replace(/,/g, ''))
 
     return (
         <div>
