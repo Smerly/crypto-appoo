@@ -139,8 +139,23 @@ export const AssetsModal = styled.div`
     justify-content: center;
     align-items: center;
     top: 50%;
+    transform: translate(-10%, -50%);
+    color: white;
+    transition: 0.5s;
+    width: 40%;
+    height: 40%;
+    visibility: ${(props) => props.show ? 'visible' : 'hidden'};
+    opacity: ${(props) => props.show ? '1' : '0'};
+`
+
+export const EditAssetsModal = styled.div`
+    z-index: 2;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-40%, -50%);
     color: white;
     transition: 0.5s;
     width: 40%;

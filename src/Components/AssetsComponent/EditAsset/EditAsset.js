@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { AssetsModal, AssetModalBox, ModalLabel, AssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, EditAssetButton, CoinImage, CoinNameSelectionWrapper, CoinNameInput, CoinNameLabel  } from "../Assets.style"
+import { AssetsModal, AssetModalBox, ModalLabel, AssetModalOverlay, CoinSelectionBox, TempCoinIconBox, SelectionFields, DropdownSelection, FormButtons, CloseButton, SubmitButton, EditAssetButton, CoinImage, CoinNameSelectionWrapper, CoinNameInput, CoinNameLabel, EditAssetsModal  } from "../Assets.style"
 import EditAmount from "./EditAmount"
 import EditDate from "./EditDate"
 import { updateCurrency } from "redux/portfolioSlice"
@@ -53,7 +53,7 @@ function EditAsset(props) {
             <AssetModalOverlay show={show} onClick={handleClose} />
 
             
-            <AssetsModal show={show}>
+            <EditAssetsModal show={show}>
                 <AssetModalBox>
                     <ModalLabel>Select Coin</ModalLabel>
                     <CoinSelectionBox>
@@ -85,7 +85,7 @@ function EditAsset(props) {
                     </FormButtons>
                     
                 </AssetModalBox>
-            </AssetsModal>
+            </EditAssetsModal>
         </div>
     )
 }
