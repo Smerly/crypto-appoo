@@ -6,7 +6,7 @@ export const Coins = tw.div`
     flex-col
     min-h-max
     bg-primary
-    mt-60
+    rounded-2xl
 `
 
 export const CoinsWrapper = styled.div`
@@ -15,6 +15,7 @@ export const CoinsWrapper = styled.div`
     background-image: linear-gradient(#191B1F, #191B1F),  linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(30,30,30,1) 100%);
     background-origin: border-box;
     background-clip: content-box, border-box;
+    margin-top: 15rem;
 `
 
 export const EachCoinWrapper = tw.div`
