@@ -2,15 +2,23 @@ import tw from "tailwind-styled-components";
 import styled from 'styled-components';
 
 export const CoinNavbarWrapper = tw.div`
-    absolute
     left-1/3
     flex
     flex-row
     items-center
-    bg-primary
-
     h-10
-    p-5
+    py-10
+    border-b-2
+    border-dividerGray
+    border-solid
+    ml-28
+`
+
+export const CoinNavbarDivider = tw.div`
+    w-0.5
+    h-6
+    bg-dividerGray
+    mx-5
 `
 
 export const CoinNavbarText = tw.p`
@@ -19,7 +27,19 @@ export const CoinNavbarText = tw.p`
     items-center
     text-white
     mx-1
-    text-sm
+    text-lg
+    font-medium
+    text-center
+`
+
+export const CoinNavbarLabel = tw.p`
+    flex
+    flex-row
+    items-center
+    text-gray-300
+    text-md
+    mr-2
+    font-medium
     text-center
 `
 

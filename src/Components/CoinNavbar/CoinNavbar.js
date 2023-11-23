@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getGlobalData } from "helpers/getCoin";
-import { CoinNavbarWrapper, CoinNavbarText, SmallImage } from "./CoinNavbar.style";
+import { CoinNavbarWrapper, CoinNavbarText, SmallImage, CoinNavbarDivider, CoinNavbarLabel } from "./CoinNavbar.style";
 import CoinNavbarBar from "./CoinNavbarBar";
 import { handleAwaitInt, handleAwaitPrim } from "utils/handleAwait";
 import { returnMillBillThou } from "utils/returnMillBillThou";
@@ -46,26 +46,38 @@ function CoinNavbar () {
     return (
         <CoinNavbarWrapper>
             <CoinNavbarText>
-                Coins: {handleAwaitInt(globalData, 'active_cryptocurrencies')}
+                <CoinNavbarLabel>
+                    Coins
+                </CoinNavbarLabel>
+                {handleAwaitInt(globalData, 'active_cryptocurrencies')}
             </CoinNavbarText>
+            <CoinNavbarDivider />
             <CoinNavbarText>
-                Exchange: {handleAwaitInt(globalData, 'markets')}
+                <CoinNavbarLabel>
+                    Exchange
+                </CoinNavbarLabel>
+                {handleAwaitInt(globalData, 'markets')}
             </CoinNavbarText>
-            <CoinNavbarText>•</CoinNavbarText>
+
+            <CoinNavbarDivider />
+
             <CoinNavbarText>
                 {returnMillBillThou(totalMarketCap)}
             </CoinNavbarText>
-            <CoinNavbarText>•</CoinNavbarText>
-            <CoinNavbarText className={`${returnGreenOrRedCondition(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume > 0)}`}>
+            <CoinNavbarText className={`ml-5 ${returnGreenOrRedCondition(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume > 0)}`}>
               {returnMillBillThou(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume)} {returnArrow(handleAwaitInt(globalData, `market_cap_change_percentage_24h_${currencyType.currency}`) * totalVolume, 0)}
             </CoinNavbarText>
             <CoinNavbarBar fraction={marketCap24h} total={100}/>
+
+            <CoinNavbarDivider />
 
             <CoinNavbarText>
                 <SmallImage src={btcLogo}/>
                 {`${Math.floor(btcPercentage)}%`}
             </CoinNavbarText>
             <CoinNavbarBar fraction={btcPercentage} total={100} />
+
+            <CoinNavbarDivider />
 
             <CoinNavbarText>
                 <SmallImage src={ethLogo}/>

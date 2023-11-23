@@ -3,13 +3,15 @@ import tw from 'tailwind-styled-components';
 import toggleIcon from 'images/toggler-icon.png'
 
 export const NavbarWrapper = styled.div`
-background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(125,60,85,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%);
+    display: flex;
+    flex-direction: column;
 `
 
 export const NavbarBox = styled.div`
+    border-bottom: 2px rgba(40,40,40, 0.3) solid;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
     width: 100vw;
-    height: 5rem;
-    background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(125,60,85,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -19,11 +21,10 @@ export const NavbarRespBig = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-left: 100px;
+    padding-left: 7rem;
     padding-right: 20px;
-    width: 100%;
-    background: linear-gradient(90deg, rgba(96,54,54,1) 0%, rgba(170,69,108,1) 12%, rgba(140,69,96,1) 30%, rgba(23,29,101,1) 54%, rgba(27,34,120,1) 61%, rgba(57,96,144,1) 79%, rgba(62,106,161,1) 87%, rgba(48,62,62,1) 100%),
-    linear-gradient(to right,black,white);`
+    width: 100%;    
+`
 
 export const NavbarRespSmall = styled.div`
     display: flex;
@@ -59,15 +60,21 @@ export const NavbarHidden = tw.div`
 export const DropdownButton = tw.button`
     text-white
     rounded-lg 
-    border-2
-    border-gray-700
-    border-solid
-    bg-secondary
+    bg-primary
     w-32 
-    m-20 
-    mt-1 
-    mb-1 
     p-3
+
+`
+export const DropdownButtonWrapper = styled.div` 
+    border-radius: 12px;
+    border: double 2px transparent;
+    background-image: linear-gradient(rgba(31,31,40,1), rgba(31,31,40,1)),  linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(30,30,30,1) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
 
 `
 
@@ -82,12 +89,20 @@ export const DropdownList = styled.ul`
 export const DarkMode = styled.button`
 `
 
-export const SearchBarWrapper = tw.form`
-    bg-secondary
-    rounded-xl
-    border-2
-    border-gray-700
-    border-solid
+// export const SearchBarWrapper = tw.form`
+//     bg-secondary
+//     rounded-xl
+//     border-2
+//     border-gray-700
+//     border-solid
+// `
+
+export const SearchBarWrapper = styled.form`
+    border-radius: 11px;
+    border: double 2px transparent;
+    background-image: linear-gradient(white, white),  linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(30,30,30,1) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 `
 
 export const SearchIconWrapper = tw.div`
@@ -99,7 +114,7 @@ export const SearchIconWrapper = tw.div`
     pointer-events-none
 `
 export const SearchInput = tw.input`
-    rounded-xl 
+    rounded-lg
     h-11 
     w-full 
     ml-auto 
@@ -115,7 +130,17 @@ export const EachCurrencyButton = tw.button`
 `
 
 export const NavLinks = tw.div`
+    flex
+    flex-row
     rounded-2xl
     bg-secondaryTransparent
-    p-5
+
+`
+
+export const NavLinksWrapper = styled.div`
+    border-radius: 19px;
+    border: double 2px transparent;
+    background-image: linear-gradient(rgba(31,31,40,1), rgba(31,31,40,1)),  linear-gradient(180deg, rgba(100,100,100,1) 0%, rgba(60,60,60,1) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 `

@@ -6,7 +6,7 @@ import { Chart as ChartJS, BarElement, PointElement, CategoryScale, LinearScale,
 import { getCoinChartData } from "helpers/getCoin";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import { handleAwaitArray } from "utils/handleAwait";
-import { MainChartWrapper } from "./overview.style";
+import { MainChart, MainChartWrapper } from "./overview.style";
 
 
 function BarGraph() {
@@ -38,7 +38,9 @@ function BarGraph() {
 
     return (
         <MainChartWrapper>
-            <Bar data={data} options={options}/>
+            <MainChart>
+                <Bar data={data} options={options}/>
+            </MainChart>
         </MainChartWrapper>
     )
 }

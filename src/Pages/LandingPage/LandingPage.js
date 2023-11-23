@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { LandingPageWrapper, CustomContainer } from 'Pages/LandingPage/Landing.style'
+import { LandingPageWrapper, CustomContainer, Tester } from 'Pages/LandingPage/Landing.style'
 import CoinList from 'Components/CoinListComponent/CoinList'
 import { getCoin } from 'helpers/getCoin'
 import 'Pages/LandingPage/LandingPage.css'
@@ -13,6 +13,7 @@ function LandingPage () {
             <CustomContainer>
                 <h1 className='text-3xl mt-5 title-header'> Overview </h1>
                 <div className='graph-row'>
+                    {/* <Tester /> */}
                     <div className='graph-box'> 
                         <LineGraph /> 
                     </div>
