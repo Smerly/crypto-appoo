@@ -21,6 +21,7 @@ function CurrencyDropDown() {
         <div>
             <DropdownButtonWrapper>
                 <DropdownButton data-dropdown-toggle="dropdownRadioBgHover" className='dropdown-button bg-gray' onClick={show}>
+                    {currencyType}
                 </DropdownButton>            
             </DropdownButtonWrapper>
             
