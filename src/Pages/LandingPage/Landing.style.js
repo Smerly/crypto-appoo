@@ -34,15 +34,3 @@ export const LandingNavLink = tw.li`
     duration-200
     font-semibold
 `
-
-// margin: 10px;
-// font-size: 20px;
-// text-decoration: none;
-// color: white;
-
-// padding: 5px;
-// padding-left: 30px;
-// padding-right: 30px;
-// border-radius: 100px;
-// transition: 0.2s;
-// font-weight: 600;

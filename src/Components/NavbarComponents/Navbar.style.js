@@ -94,15 +94,6 @@ export const DarkMode = styled.button`
     height: 3rem;
     ${(props) => props.lightState ? 'filter: invert(1)' : ''}
 `
-
-// export const SearchBarWrapper = tw.form`
-//     bg-secondary
-//     rounded-xl
-//     border-2
-//     border-gray-700
-//     border-solid
-// `
-
 export const SearchBarWrapper = styled.form`
     border-radius: 11px;
     border: double 2px transparent;

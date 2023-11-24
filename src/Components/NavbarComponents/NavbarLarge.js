@@ -15,7 +15,6 @@ function NavbarLarge(props) {
     const toggleLight = () => setLightState(!lightState)
     return (
         <NavbarRespBig>
-            {/* <NavLinksWrapper> */}
                 <NavLinks>
                     <Link className={`navbar-links hover:bg-primary ${location.pathname === '/' ? 'bg-primary' : ''}`} to='/'>
                         Coins
@@ -25,7 +24,6 @@ function NavbarLarge(props) {
                         Portfolio
                     </Link>
                 </NavLinks>
-            {/* </NavLinksWrapper> */}
 
             <div className='ml-auto'>
                 <SearchBar/>
