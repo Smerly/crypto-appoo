@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import tw from 'tailwind-styled-components';
 import toggleIcon from 'images/toggler-icon.png'
+import lightbulb from 'images/lightbulb.png'
 
 export const NavbarWrapper = styled.div`
     display: flex;
@@ -22,7 +23,7 @@ export const NavbarRespBig = styled.div`
     flex-direction: row;
     align-items: center;
     padding-left: 7rem;
-    padding-right: 20px;
+    padding-right: 4rem;
     width: 100%;    
 `
 
@@ -87,6 +88,11 @@ export const DropdownList = styled.ul`
 `
 
 export const DarkMode = styled.button`
+    background: url(${lightbulb});
+    background-size: contain;
+    width: 3rem;
+    height: 3rem;
+    ${(props) => props.lightState ? 'filter: invert(1)' : ''}
 `
 
 // export const SearchBarWrapper = tw.form`
