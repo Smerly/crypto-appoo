@@ -7,7 +7,8 @@ import CurrencyDropDown from "Components/NavbarComponents/CurrencyDropDown"
 import { DarkMode, NavLinks } from "Components/NavbarComponents/Navbar.style"
 import { useState } from "react"
 
-function NavbarLarge() {
+function NavbarLarge(props) {
+    const { location } = props
     const [lightState, setLightState] = useState(true)
     const currencyType = useSelector((state) => state.persist.currency)
 
@@ -16,11 +17,11 @@ function NavbarLarge() {
         <NavbarRespBig>
             {/* <NavLinksWrapper> */}
                 <NavLinks>
-                    <Link className='navbar-links hover:bg-primary' to='/'>
+                    <Link className={`navbar-links hover:bg-primary ${location.pathname === '/' ? 'bg-primary' : ''}`} to='/'>
                         Coins
                     </Link>
 
-                    <Link className='navbar-links hover:bg-primary' to='/portfolio'>
+                    <Link className={`navbar-links hover:bg-primary ${location.pathname === '/portfolio' ? 'bg-primary' : ''}`} to='/portfolio'>
                         Portfolio
                     </Link>
                 </NavLinks>
