@@ -1,11 +1,19 @@
 import tw from "tailwind-styled-components";
 import styled from 'styled-components'
 
-export const MainChartWrapper = tw.div`
+export const MainChartWrapper = styled.div`
+    border-radius: 19px;
+    border: double 2px transparent;
+    background-image: linear-gradient(#191B1F, #191B1F),  linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(30,30,30,1) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+`
+
+export const MainChart = tw.div`
     flex
     flex-row
     justify-center
     items-center
     bg-primary
-    p-10
+    m-5
 `

@@ -7,7 +7,7 @@ import { getGradient } from "utils/getGradient"
 import { returnMillBillThou } from "utils/returnMillBillThou"
 import { options, plugins } from "Components/OverviewComponents/options"
 import { getCoinChartData } from "helpers/getCoin"
-import { MainChartWrapper } from "./overview.style"
+import { MainChart, MainChartWrapper } from "./overview.style"
 
 function LineGraph () {
     const currencyType = useSelector((state) => state.persist.currency)
@@ -52,7 +52,9 @@ function LineGraph () {
     }
     return (
         <MainChartWrapper>
-            <Line options={options} data={data} />
+            <MainChart>
+                <Line options={options} data={data} />
+            </MainChart>
         </MainChartWrapper>
     )
 }

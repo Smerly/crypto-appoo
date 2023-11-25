@@ -37,51 +37,53 @@ function CoinList () {
     }
 
     return (
-        <Coins>
-            <InfiniteScroll
-                dataLength={coins.length}                
-                hasMore={true}
-                next={addToLoadCounter}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
-                    </p>
-                }
-                pullDownToRefreshContent={
-                    <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
-                }
-                releaseToRefreshContent={
-                    <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
-                }
-                >
+        <CoinsWrapper>
+            <Coins>
+                <InfiniteScroll
+                    dataLength={coins.length}                
+                    hasMore={true}
+                    next={addToLoadCounter}
+                    loader={<h4>Loading...</h4>}
+                    endMessage={
+                        <p>
+                            <b>Yay! You have seen it all</b>
+                        </p>
+                    }
+                    pullDownToRefreshContent={
+                        <h3>&#8595; Pull down to refresh</h3>
+                    }
+                    releaseToRefreshContent={
+                        <h3>&#8593; Release to refresh</h3>
+                    }
+                    >
+                    
+                    {/* Legend Header */}
                 
-                {/* Legend Header */}
-             
 
-                 <EachCoinMap>
-                    <EachCoinWrapper>
-                        <CoinHeader>#</CoinHeader>
-                        <CoinName>Name</CoinName>
-                        <CoinHeader className='ml-20'>Price</CoinHeader>
-                        <CoinHeader>1h%</CoinHeader>
-                        <CoinHeader>24h%</CoinHeader>
-                        <CoinHeader>7h%</CoinHeader>
-                        <CoinHeader className='m-16'>24h Volume/Market Cap</CoinHeader>
-                        <CoinHeader className='mr-16'>Circulating/Total Supply</CoinHeader>
-                        <CoinHeader>Last 7d</CoinHeader>
-                    </EachCoinWrapper>
-                </EachCoinMap>
-
-                {coins.map((eachCoin, i) => {
-                return (
-                    <EachCoinMap className='overflow-x-scroll'>
-                        <EachCoin eachCoin={eachCoin} index={i+1}/>
+                    <EachCoinMap>
+                        <EachCoinWrapper>
+                            <CoinHeader>#</CoinHeader>
+                            <CoinName>Name</CoinName>
+                            <CoinHeader className='ml-20'>Price</CoinHeader>
+                            <CoinHeader>1h%</CoinHeader>
+                            <CoinHeader>24h%</CoinHeader>
+                            <CoinHeader>7h%</CoinHeader>
+                            <CoinHeader className='m-16'>24h Volume/Market Cap</CoinHeader>
+                            <CoinHeader className='mr-16'>Circulating/Total Supply</CoinHeader>
+                            <CoinHeader>Last 7d</CoinHeader>
+                        </EachCoinWrapper>
                     </EachCoinMap>
-                )
-            })}
-            </InfiniteScroll>
-        </Coins>
+
+                    {coins.map((eachCoin, i) => {
+                    return (
+                        <EachCoinMap className='overflow-x-scroll'>
+                            <EachCoin eachCoin={eachCoin} index={i+1}/>
+                        </EachCoinMap>
+                    )
+                })}
+                </InfiniteScroll>
+            </Coins>
+        </CoinsWrapper>
     )
 }
 
