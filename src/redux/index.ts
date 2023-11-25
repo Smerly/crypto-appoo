@@ -1,5 +1,5 @@
 import { persistReducer, persistStore } from 'redux-persist'
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage';
 // Portfolio
 import { portfolioSlice } from './portfolioSlice'
@@ -19,6 +19,8 @@ const store = configureStore({
         persist: persistedReducer
     }
 })
+
+export type RootState = ReturnType<typeof rootReducer>
 
 export default store;
 export const persistor = persistStore(store)

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { LandingPageWrapper, CustomContainer, Tester, LandingNavLink, LandingNavbar } from 'Pages/LandingPage/Landing.style'
-import CoinList from 'Components/CoinListComponent/CoinList'
+import CoinList from 'Components/CoinListComponent/CoinList.ts'
 import { getCoin } from 'helpers/getCoin'
 import 'Pages/LandingPage/LandingPage.css'
 import LineGraph from 'Components/OverviewComponents/LineGraph'

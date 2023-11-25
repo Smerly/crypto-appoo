@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { handleAwaitPrim } from 'utils/handleAwait'
 import { Coins, CoinsWrapper, EachCoinWrapper, CoinTitle, CoinHeader, CoinName, EachCoinMap } from 'Components/CoinListComponent/CoinList.style'
 import { getAllCoins, getCoin, getAllCoinsWithImages } from 'helpers/getCoin'
+import { RootState } from '../../utils/interfaces'
 import EachCoin from './EachCoin'
 
 
@@ -11,11 +12,11 @@ function CoinList () {
     const [coins, setCoins] = useState([])
     const [loadCounter, setLoadCounter] = useState(0)
     
-    const currencyType = useSelector((state) => state.persist.currency)
+    const currencyType = useSelector((state: RootState) => state.persist.currency)
     
     // Case for load counter change
     useEffect(() => {
-        getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
+        getAllCoinsWithImages(currencyType.currency, String(loadCounter)).then((res) => {
             setCoins([...coins, ...res])
         }).catch((err) => {
             return err
@@ -24,7 +25,7 @@ function CoinList () {
 
     // Case for Currency type change, to avoid duplicates
     useEffect(() => {
-        getAllCoinsWithImages(currencyType.currency, loadCounter).then((res) => {
+        getAllCoinsWithImages(currencyType.currency, String(loadCounter)).then((res) => {
             setCoins([])
             setCoins([...res])
         }).catch((err) => {

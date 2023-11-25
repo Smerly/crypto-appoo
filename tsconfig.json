@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "rootDir": "src",
+        "moduleResolution": "node"
+    },
+    "include": ["src"]
+}
