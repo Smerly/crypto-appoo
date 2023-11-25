@@ -22,8 +22,23 @@ export const LandingNavbar = tw.ul`
     w-80
 `
 
-export const LandingNavLink = tw.li`
+export const CoinsButton = tw.button`
     hover:bg-primary
+    ${(props) => props.tab === 'coins' ? 'bg-primary' : ''}
+    m-4
+    text-lg
+    text-white
+    p-2
+    pl-5
+    pr-5
+    rounded-full
+    duration-200
+    font-semibold
+`
+
+export const ConverterButton = tw.button`
+    hover:bg-primary
+    ${(props) => props.tab === 'converter' ? 'bg-primary' : ''}
     m-4
     text-lg
     text-white
