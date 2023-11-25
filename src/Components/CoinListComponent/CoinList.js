@@ -45,15 +45,15 @@ function CoinList () {
                     next={addToLoadCounter}
                     loader={<h4>Loading...</h4>}
                     endMessage={
-                        <p style={{ textAlign: 'center' }}>
+                        <p>
                             <b>Yay! You have seen it all</b>
                         </p>
                     }
                     pullDownToRefreshContent={
-                        <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+                        <h3>&#8595; Pull down to refresh</h3>
                     }
                     releaseToRefreshContent={
-                        <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+                        <h3>&#8593; Release to refresh</h3>
                     }
                     >
                     
