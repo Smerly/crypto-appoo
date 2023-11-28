@@ -28,6 +28,7 @@ function LandingPage () {
                     </ConverterButton>
                 </LandingNavbar>
                 {landingTab === 'coins' ? <Overview /> : <Converter />}
+                <CoinList />
             </CustomContainer>
         </LandingPageWrapper>
     )

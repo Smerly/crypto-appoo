@@ -8,8 +8,8 @@ export const LandingPageWrapper = styled.div`
 `
 
 export const CustomContainer = styled.div`
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 8vw;
+    margin-right: 8vw;
 `
 
 export const LandingNavbar = tw.ul`
@@ -20,6 +20,8 @@ export const LandingNavbar = tw.ul`
     rounded-2xl
     bg-secondaryTransparent
     w-80
+    mt-10
+    mb-20
 `
 
 export const CoinsButton = tw.button`

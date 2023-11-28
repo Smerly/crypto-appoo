@@ -15,7 +15,6 @@ function Overview() {
                     <BarGraph />
                 </GraphBox>
             </GraphRow>
-            <CoinList />
         </div>
     )
 }
