@@ -1,9 +1,8 @@
 import { CoinQueryListImage, EachFilteredCoin, FilteredList } from "./Converter.style"
 
-
-
 function FilteredOptions(props) {
-    const { coinList, coinInput, setCoinInput, setChosenCoin } = props
+    const { filteredOptionsData } = props
+    const { coinList, coinInput, setCoinInput, setChosenCoin } = filteredOptionsData
 
     const filteredCoinList = coinList.filter((each) => each.name.toLowerCase().includes(coinInput.toLowerCase()))
 

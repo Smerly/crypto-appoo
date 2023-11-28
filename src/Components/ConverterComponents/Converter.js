@@ -4,11 +4,13 @@ import { getAllCoinsWithImagesNoPage } from "helpers/getCoin"
 import { useSelector } from "react-redux"
 import { returnOnCondition } from "utils/returnOnCondition"
 import FilteredOptions from "./FilteredOptions"
-import { MidCol, MidRow } from "App.style.js"
+import { MidRow } from "App.style.js"
 import PriceInformation from "./PriceInformation"
 import { roundToHundredth } from "utils/roundToHundredth"
 
 function Converter() {
+    const currencyType = useSelector((state) => state.persist.currency.currency)
+
     const [coinInput, setCoinInput] = useState('')
     const [coinOutput, setCoinOutput] = useState('')
     const [amountOfCoin, setAmountOfCoin] = useState(0)
@@ -18,6 +20,20 @@ function Converter() {
     const [coinList, setCoinList] = useState([])
     const [ifSelected, setIfSelected] = useState(false)
     const [resultIfSelected, setResultIfSelected] = useState(false)
+
+    const filteredOptionsDataInput = {
+        coinList: coinList,
+        coinInput: coinInput,
+        setCoinInput: setCoinInput,
+        setChosenCoin: setChosenBeforeCoin
+    }
+
+    const filteredOptionsDataOutput = {
+        coinList: coinList, 
+        coinInput: coinOutput,
+        setCoinInput: setCoinOutput, 
+        setChosenCoin: setChosenAfterCoin
+    }
 
     const handleFocused = () => {
         setTimeout(() => {
@@ -43,8 +59,6 @@ function Converter() {
     }
     
     const returnCoinImage = (coin) => coin.coinImage ? <ChosenCoinImage src={coin.coinImage}/> : ''
-
-    const currencyType = useSelector((state) => state.persist.currency.currency)
 
     useEffect(() => {
         async function getAllCoinsFiltered() {
@@ -76,7 +90,7 @@ function Converter() {
                                     <CoinInput type='text' placeholder='Coin..' onFocus={handleFocused} onBlur={handleBlurred} value={coinInput} onChange={(e) => setCoinInput(e.target.value)} />
                                     <CoinAmountInput type='number' placeholder="Amount.." onChange={(e) => setAmountOfCoin(e.target.value)}/>
                                 </MidRow>
-                                {returnOnCondition(<FilteredOptions coinList={coinList} coinInput={coinInput} setCoinInput={setCoinInput} setChosenCoin={setChosenBeforeCoin}/>, () => ifSelected)}
+                                {returnOnCondition(<FilteredOptions filteredOptionsData={filteredOptionsDataInput}/>, () => ifSelected)}
                         </ChosenCoinBox>
                     </CoinInputBox>
                     <PriceInformation chosenCoin={chosenBeforeCoin}/>
@@ -95,7 +109,7 @@ function Converter() {
                                     <CoinOutput type='text'  placeholder='Coin..' onFocus={handleFocusedAfter} onBlur={handleBlurredAfter} value={coinOutput} onChange={(e) => setCoinOutput(e.target.value)}/>
                                     <CoinAmountOutput>{roundToHundredth(amountOfCoinOutput)}</CoinAmountOutput>
                                 </MidRow>
-                                {returnOnCondition(<FilteredOptions coinList={coinList} coinInput={coinOutput} setCoinInput={setCoinOutput} setChosenCoin={setChosenAfterCoin}/>, () => resultIfSelected)}
+                                {returnOnCondition(<FilteredOptions filteredOptionsData={filteredOptionsDataOutput} />, () => resultIfSelected)}
                         </ChosenCoinBox>
                     </CoinOutputBox>
                     <PriceInformation chosenCoin={chosenAfterCoin}/>
