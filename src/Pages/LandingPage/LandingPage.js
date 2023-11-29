@@ -1,40 +1,33 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LandingPageWrapper, CustomContainer, Tester, LandingNavLink, LandingNavbar } from 'Pages/LandingPage/Landing.style'
+import { LandingPageWrapper, CustomContainer, Tester, LandingNavLink, LandingNavbar, CoinsButton, ConverterButton } from 'Pages/LandingPage/Landing.style'
 import CoinList from 'Components/CoinListComponent/CoinList'
+import Converter from 'Components/ConverterComponents/Converter'
+import Overview from 'Components/OverviewComponents/Overview'
 import { getCoin } from 'helpers/getCoin'
-import 'Pages/LandingPage/LandingPage.css'
 import LineGraph from 'Components/OverviewComponents/LineGraph'
 import BarGraph from 'Components/OverviewComponents/BarGraph'
 
 function LandingPage () {
     const [selectedCoin, setSelectedCoin] = useState()
+    const [landingTab, setLandingTab] = useState('coins')
+
+    const setCoinTab = () => setLandingTab('coins')
+    const setConverterTab = () => setLandingTab('converter')
+    
     return (
         <LandingPageWrapper>
             <CustomContainer>
                 <LandingNavbar>
-                    <LandingNavLink>
-                        <Link>
+                    <CoinsButton tab={landingTab} onClick={setCoinTab}>
                             Coins
-                        </Link>
-                    </LandingNavLink>
+                    </CoinsButton>
 
-                    <LandingNavLink>
-                        <Link>
+                    <ConverterButton tab={landingTab} onClick={setConverterTab}>
                             Converter
-                        </Link>
-                    </LandingNavLink>
+                    </ConverterButton>
                 </LandingNavbar>
-                <h1 className='text-3xl mt-5 title-header'> Overview </h1>
-                <div className='graph-row'>
-                    {/* <Tester /> */}
-                    <div className='graph-box'> 
-                        <LineGraph /> 
-                    </div>
-                    <div className='graph-box'>
-                        <BarGraph />
-                    </div>
-                </div>
+                {landingTab === 'coins' ? <Overview /> : <Converter />}
                 <CoinList />
             </CustomContainer>
         </LandingPageWrapper>

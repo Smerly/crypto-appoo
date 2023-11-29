@@ -94,6 +94,7 @@ export const DarkMode = styled.button`
     height: 3rem;
     ${(props) => props.lightState ? 'filter: invert(1)' : ''}
 `
+
 export const SearchBarWrapper = styled.form`
     border-radius: 11px;
     border: double 2px transparent;
@@ -111,6 +112,7 @@ export const SearchIconWrapper = tw.div`
     pointer-events-none
 `
 export const SearchInput = tw.input`
+    outline-0
     rounded-lg
     h-11 
     w-full 

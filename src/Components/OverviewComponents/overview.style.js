@@ -17,3 +17,22 @@ export const MainChart = tw.div`
     bg-primary
     m-5
 `
+
+export const OverviewTitle = tw.div`
+    text-3xl 
+    text-white
+    mt-5
+    ml-5
+`
+
+export const GraphRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 10vh;
+`
+
+export const GraphBox = styled.div`
+    width: 34vw;
+    height: 40vh;
+`

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from 'redux/currencySlice'
 import { DropdownMenu, DropdownButton, EachCurrencyButton, DropdownList, DropdownButtonWrapper } from 'Components/NavbarComponents/Navbar.style'
 import { getCoin } from 'helpers/getCoin'
-import { handleAwaitPrim } from 'utils/handleAwait'
 
 function CurrencyDropDown() {
     const [currencyTypeState , setCurrencyTypeState] = useState('')
