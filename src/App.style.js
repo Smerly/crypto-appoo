@@ -2,12 +2,7 @@ import { styled } from 'styled-components'
 import tw from 'tailwind-styled-components'
 
 export const PrimaryComponentWrapper = tw.div`
-    bg-secondary
     p-20
-    border-t-0
-    border-8
-    border-primary
-    bofder-solid
 `
 
 export const Title = tw.h1`
