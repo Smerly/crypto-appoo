@@ -3,7 +3,7 @@ import tw from 'tailwind-styled-components'
 
 export const LandingPageWrapper = styled.div`
     border-top: 0px black solid;
-    min-height: 200vh;
+    min-height: 100vh;
     padding: 20px;
 `
 

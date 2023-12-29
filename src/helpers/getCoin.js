@@ -12,7 +12,7 @@ export async function getAllCoins() {
 }
 
 export async function getAllCoinsWithImages(currencyType, page='1') {
-    const coins = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyType}&order=market_cap_desc&per_page=10&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`)
+    const coins = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencyType}&order=market_cap_desc&per_page=5&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`)
     return await coins.json()
 }
 
