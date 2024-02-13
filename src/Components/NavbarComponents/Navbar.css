@@ -58,3 +58,8 @@
 	z-index: 2 !important;
     background-color: #191B1F !important;
 }
+
+.svg-paths { 
+    fill:white;
+    fill-opacity: 1;
+}

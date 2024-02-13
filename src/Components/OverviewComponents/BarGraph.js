@@ -6,7 +6,7 @@ import { Chart as ChartJS, BarElement, PointElement, CategoryScale, LinearScale,
 import { getCoinChartData } from "helpers/getCoin";
 import { returnMillBillThou } from "utils/returnMillBillThou";
 import { handleAwaitArray } from "utils/handleAwait";
-import { MainChart, MainChartWrapper } from "./overview.style";
+import { MainChart, MainChartWrapper, ChartLabelWrapper, ChartLabel } from "./overview.style";
 
 
 function BarGraph() {
@@ -38,6 +38,11 @@ function BarGraph() {
 
     return (
         <MainChartWrapper>
+            {/* <ChartLabelWrapper>
+                <ChartLabel>
+                    Bitcoin
+                </ChartLabel>
+            </ChartLabelWrapper> */}
             <MainChart>
                 <Bar data={data} options={options}/>
             </MainChart>

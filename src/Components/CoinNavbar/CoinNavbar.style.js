@@ -2,6 +2,7 @@ import tw from "tailwind-styled-components";
 import styled from 'styled-components';
 
 export const CoinNavbarWrapper = tw.div`
+    w-screen
     left-1/3
     flex
     flex-row
@@ -11,7 +12,7 @@ export const CoinNavbarWrapper = tw.div`
     border-b-2
     border-dividerGray
     border-solid
-    ml-28
+    pl-36
 `
 
 export const CoinNavbarDivider = tw.div`

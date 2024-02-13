@@ -36,3 +36,18 @@ export const GraphBox = styled.div`
     width: 34vw;
     height: 40vh;
 `
+
+export const ChartLabelWrapper = tw.div`
+    m-6
+    ml-8
+`
+
+export const ChartLabelHeader = tw.h2`
+    text-gray-200
+`
+
+export const ChartLabel = tw.h2`
+    text-white-200
+    text-2xl
+    font-semibold
+`

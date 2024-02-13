@@ -143,3 +143,8 @@ export const NavLinksWrapper = styled.div`
     background-origin: border-box;
     background-clip: content-box, border-box;
 `
+
+export const LogoSVG = tw.svg`
+    mx-5
+    mr-10
+`
